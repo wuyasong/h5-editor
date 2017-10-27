@@ -1,0 +1,123 @@
+<div class="main-view">
+    <div class="main-menu">
+        <div class="menu-main">
+            <div class="menu-main-icon"></div>
+            <ul class="menu-main-list">
+                {{!--<li>
+                    <div class="menu-main-list-btn">文件</div>
+                </li>--}}
+                <li>
+                    <div class="menu-main-list-btn">窗口<div class="main-toolbar-arrow-icon"></div></div>
+                    <ul class="menu-main-second-level-list">
+                        <li class="menu-main-ctrls-layer">图层</li>
+                    </ul>
+                </li>
+                {{!--<li>
+                    <div class="menu-main-list-btn">视图</div>
+                </li>--}}
+            </ul>
+        </div>
+        <div class="menu-logo-box">
+            <div class="menu-logo-text">M-Editor</div>
+            <div class="menu-logo-icon"></div>
+        </div>
+        <div class="menu-btn-box">
+            <div class="menu-btn-wrapper menu-btn-download">
+                <div class="menu-btn-icon menu-btn-download-icon"></div>
+                <div class="menu-btn-tip">下载文件</div>
+            </div>
+            <div class="menu-btn-wrapper menu-btn-revoke disabled">
+                <em class="menu-btn-icon menu-btn-revoke-icon"></em>
+                <div class="menu-btn-tip">撤销（Ctrl+Z）</div>
+            </div>
+            <div class="menu-btn-wrapper menu-btn-recover disabled">
+                <em class="menu-btn-icon menu-btn-recover-icon"></em>
+                <div class="menu-btn-tip">恢复（Ctrl+Y）</div>
+            </div>
+            <div class="menu-btn-wrapper menu-btn-save">
+                <div class="menu-btn-icon menu-btn-save-icon"></div>
+                <div class="menu-btn-tip">保存（Ctrl+S）</div>
+            </div>
+            <div class="menu-btn-wrapper menu-btn-release">
+                <div class="menu-btn-icon menu-btn-release-icon"></div>
+                <div class="menu-btn-tip">发布</div>
+            </div>
+            <div class="menu-btn-wrapper menu-btn-qrcode">
+                <em class="menu-btn-icon menu-btn-qrcode-icon"></em>
+                <div class="menu-btn-tip">点击预览作品</div>
+                <div class="menu-qrcode-dialog">
+                    <a href="/m/page/{{sessionid}}" target="_blank">
+                        <img src="/m/qrcode?id={{sessionid}}" class="qrcode-img">    
+                        <div class="menu-page-link">点击预览效果</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-body clearfix">
+        <div class="main-toolbar">
+            <div class="main-toolbar-topbar"></div>
+            <div class="main-toolbar-item main-toolbar-text">
+                <div class="main-toolbar-icon main-toolbar-text-icon"></div>
+                <div class="main-toolbar-tip main-toolbar-text-tip">添加文本</div>
+            </div>
+            <div class="main-toolbar-item main-toolbar-view">
+                <div class="main-toolbar-icon main-toolbar-view-icon"></div>
+                <div class="main-toolbar-tip main-toolbar-view-tip">添加容器</div>
+            </div>
+            <div class="main-toolbar-item main-toolbar-button">
+                <div class="main-toolbar-icon main-toolbar-button-icon"></div>
+                <div class="main-toolbar-tip main-toolbar-button-tip">添加按钮</div>
+            </div>
+            <div class="main-toolbar-item main-toolbar-image" title="图片">
+                <div class="main-toolbar-icon main-toolbar-image-icon"></div>
+                <!--<div class="main-toolbar-tip">添加图片</div>-->
+                <div class="main-toolbar-arrow-icon"></div>
+                <div class="main-toolbar-menu main-toolbar-image-menu">
+                    <div class="main-toolbar-menu-item" data-type="upload">
+                        <div class="main-toolbar-menu-item-txt">上传图片</div>
+                        <input type="file" class="main-toolbar-menu-upload">
+                    </div>
+                    <div class="main-toolbar-menu-item main-toolbar-menu-gallery" data-type="gallery">
+                        <div class="main-toolbar-menu-item-txt">从图库选择</div>
+                    </div>
+                    <div class="main-toolbar-menu-item main-toolbar-menu-mypic" data-type="mypic">
+                        <div class="main-toolbar-menu-item-txt">我的图片</div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-toolbar-item main-toolbar-audio">
+                <div class="main-toolbar-icon main-toolbar-audio-icon"></div>
+                <div class="main-toolbar-tip main-toolbar-audio-tip">添加音频</div>
+            </div>
+            <div class="main-toolbar-item main-toolbar-video">
+                <div class="main-toolbar-icon main-toolbar-video-icon"></div>
+                <div class="main-toolbar-tip main-toolbar-video-tip">添加视频</div>
+            </div>
+            <div class="main-toolbar-item main-toolbar-body">
+                <div class="main-toolbar-icon main-toolbar-body-icon"></div>
+                <div class="main-toolbar-tip main-toolbar-page-tip">页面属性</div>
+            </div>
+            <div class="main-toolbar-line"></div>
+        </div>
+        <div class="main-preview-box">
+            <div class="main-preview-wrapper"{{#if preview.height}} style="height:{{preview.height}}px"{{/if}}>
+                <div class="main-preview" style="height:{{preview.height}}px;background-color:{{preview.backgroundColor}}">
+                </div>
+                <em class="ui-resizable page-ui-resizable ui-resizable-top" data-type="top"></em>
+                <em class="ui-resizable page-ui-resizable ui-resizable-bottom" data-type="bottom"></em>
+            </div>
+        </div>
+        {{!--图层--}}
+        <div class="layer-ctrls-box" {{#if setOptions.isShowLayer}} style="display: block;"{{/if}}>
+            <div class="layer-ctrls-header">
+                <span>图层</span>
+                <em class="layer-ctrls-close"></em>
+            </div>
+            <div class="layer-ctrls-list-wrapper">
+                <ul class="layer-ctrls-list">
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<!-- 选择视频弹层 -->
+<div class="window-menu shareInfo-menu">
+    <div class="window-menu-title shareInfo-menu-title">完善信息</div>
+    <div class="window-menu-closebtn shareInfo-menu-closebtn"></div>
+</div>
+<div class="shareInfo-body clearfix">
+    <div class="shareInfo-left-box fl">
+        <div class="shareInfo-input-wrapper">
+            <span class="shareInfo-txt">分享标题：</span><input type="text" class="shareInfo-input set-shareInfo-title" placeholder="分享标题" value="{{title}}">
+        </div>
+        <div class="shareInfo-textarea-wrapper">
+            <span class="shareInfo-txt">分享描述：</span><textarea class="shareInfo-textarea set-shareInfo-description" placeholder="分享描述内容">{{description}}</textarea>
+        </div>
+    </div>
+    <div class="shareInfo-img-wrapper fl">
+        <span class="shareInfo-txt">分享图片：</span><div class="shareInfo-img-box"><div class="set-shareInfo-img"{{#if shareImg}} style="background-image: url({{shareImg}})"{{/if}}></div><input type="file" class="set-shareInfo-img-input"></div>
+    </div>
+    <div class="shareInfo-btn shareInfo-ok-btn">发布</div>
+    <div class="shareInfo-btn shareInfo-cancel-btn">取消</div>
+</div>

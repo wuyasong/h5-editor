@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>H5编辑器</title>
+        <meta charset="UTF-8">
+        <meta name="keywords" content="H5,编辑,ppt,office">
+        <meta name="description" content="H5编辑平台,制作移动设备网页,编辑器,本产品最低兼容至IE9">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <link rel="stylesheet" href="/style/reset.css">
+	    <link rel="stylesheet" href="/style/jPicker-1.1.6.min.css">
+        <link rel="stylesheet" href="/style/ppt-lib.css">
+        <link rel="stylesheet" href="/style/ppt-editor.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 class="top-logo">微展 编辑器</h1>
+                <div class="top-menu">
+                    <ul class="top-menu-list">
+                        <li class="top-menu-save"><em></em></li>
+                        <li class="top-menu-publist"><em></em></li>
+                        <li class="top-menu-qrcode"><em></em></li>
+                        <li class="top-menu-set"><em></em></li>
+                    </ul>
+                </div>
+                <div class="top-title">
+                    <input type="text" class="top-title-input" value="" placeholder="请输入标题">
+                </div>
+            </div>
+            <div class="main-body">
+                <!--toolbar-->
+                <div class="main-toolbar">
+                    <div class="main-toolbar-topbar"></div>
+                    <div class="main-toolbar-item main-toolbar-text">
+                        <div class="main-toolbar-icon main-toolbar-text-icon"></div>
+                        <div class="main-toolbar-tip main-toolbar-text-tip">添加文本</div>
+                    </div>
+                    <div class="main-toolbar-item main-toolbar-view">
+                        <div class="main-toolbar-icon main-toolbar-view-icon"></div>
+                        <div class="main-toolbar-tip main-toolbar-view-tip">添加容器</div>
+                    </div>
+                    <div class="main-toolbar-item main-toolbar-button">
+                        <div class="main-toolbar-icon main-toolbar-button-icon"></div>
+                        <div class="main-toolbar-tip main-toolbar-button-tip">添加按钮</div>
+                    </div>
+                    <div class="main-toolbar-item main-toolbar-image" title="图片">
+                        <div class="main-toolbar-icon main-toolbar-image-icon"></div>
+                        <div class="main-toolbar-arrow-icon"></div>
+                        <div class="main-toolbar-menu main-toolbar-image-menu">
+                            <div class="main-toolbar-menu-item" data-type="upload">
+                                <div class="main-toolbar-menu-item-txt">上传图片</div>
+                                <input type="file" class="main-toolbar-menu-upload">
+                            </div>
+                            <div class="main-toolbar-menu-item main-toolbar-menu-gallery" data-type="gallery">
+                                <div class="main-toolbar-menu-item-txt">从图库选择</div>
+                            </div>
+                            <div class="main-toolbar-menu-item main-toolbar-menu-mypic" data-type="mypic">
+                                <div class="main-toolbar-menu-item-txt">我的图片</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-toolbar-item main-toolbar-audio">
+                        <div class="main-toolbar-icon main-toolbar-audio-icon"></div>
+                        <div class="main-toolbar-tip main-toolbar-audio-tip">添加音频</div>
+                    </div>
+                    <div class="main-toolbar-item main-toolbar-video">
+                        <div class="main-toolbar-icon main-toolbar-video-icon"></div>
+                        <div class="main-toolbar-tip main-toolbar-video-tip">添加视频</div>
+                    </div>
+                </div>
+                <!--options-->
+                <div class="main-options">
+                    <!--background-->
+                    <div class="main-options-body main-options-body-background" style="display: none;">
+                        <div class="main-options-header">
+                            <ul class="main-options-nav">
+                                <li class="current">样式</li>
+                                <li>动画</li>
+                                <li>事件</li>
+                            </ul>
+                        </div>
+                        <div class="main-options-box main-options-box-style" style="display: none;">
+                            <!-- 背景颜色 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh22">背景色</div>
+                                <div class="options-item-content-hor">
+                                    <div class="options-item-color"></div>
+                                </div>
+                            </div>
+                            <!-- 背景图片 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-vert">
+                                    <span class="fl">背景图</span>
+                                    <div class="options-item-select-btn select-btn-1 fr mr20">选择背景</div>
+                                </div>
+                                <div class="options-item-content-vert">
+                                    <div class="options-item-imgview-box">
+                                        <div class="options-item-imgview" style="background-image: url(images/admin-head.jpg);"></div>
+                                        <div class="options-item-imgview-topbar">
+                                            <div class="options-item-imgview-close"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 背景音乐 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh26">背景音乐</div>
+                                <div class="options-item-content-hor">
+                                    <div class="options-item-select-btn select-btn-1">选择音频</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-options-box main-options-box-animate" style="display: none;">
+                            <!-- 动画方式 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh26">动画方式</div>
+                                <div class="options-item-content-hor">
+                                    <div class="drop-down-menu">
+                                        <div class="drop-down-menu-selected set-animate-type-btn">无<span class="drop-down-menu-selected-arrow"></span></div>
+                                        <ul class="drop-down-menu-list" style="display: none;">
+                                            <li class="selected">无</li>
+                                            <li>从上淡入</li>
+                                            <li>从左淡入</li>
+                                            <li>从右淡入</li>
+                                            <li>从下淡入</li>
+
+                                            <li>从上飞入</li>
+                                            <li>从左飞入</li>
+                                            <li>从右飞入</li>
+                                            <li>从下飞入</li>
+
+                                            <li>从上弹入</li>
+                                            <li>从左弹入</li>
+                                            <li>从右弹入</li>
+                                            <li>从下弹入</li>
+
+                                            <li>右上旋入</li>
+                                            <li>右下旋入</li>
+                                            <li>左下旋入</li>
+                                            <li>左上旋入</li>
+
+                                            <li>淡入</li>
+                                            <li>飞入</li>
+                                            <li>正向旋转</li>
+                                            <li>逆向旋转</li>
+                                            <li>从小到大</li>
+                                            <li>从大到小</li>
+                                            <li>弹性放大</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 动画时间 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh26">时间</div>
+                                <div class="options-item-content-hor">
+                                    <div class="drop-down-input-menu">
+                                        <div class="drop-down-input-menu-selected">
+                                            <div class="drop-down-input-wrapper">
+                                                <input type="text" class="drop-down-input set-animate-timing-input" value="1秒">
+                                            </div>
+                                            <div class="drop-down-menu-selected-btn set-animate-timing-btn">
+                                                <span class="drop-down-menu-selected-btn-arrow"></span>
+                                            </div>
+                                        </div>
+                                        <ul class="drop-down-input-menu-list" style="display: none;">
+                                            <li class="selected">1秒</li>
+                                            <li>1.5秒</li>
+                                            <li>2秒</li>
+                                            <li>2.5秒</li>
+                                            <li>3秒</li>
+                                            <li>3.5秒</li>
+                                            <li>4秒</li>
+                                            <li>4.5秒</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 动画次数 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh26">次数</div>
+                                <div class="options-item-content-hor">
+                                    <div class="drop-down-input-menu">
+                                        <div class="drop-down-input-menu-selected">
+                                            <div class="drop-down-input-wrapper">
+                                                <input type="text" class="drop-down-input set-animate-count-input" value="1">
+                                            </div>
+                                            <div class="drop-down-menu-selected-btn set-animate-count-btn">
+                                                <span class="drop-down-menu-selected-btn-arrow"></span>
+                                            </div>
+                                        </div>
+                                        <ul class="drop-down-input-menu-list" style="display: none;">
+                                            <li class="selected">1</li>
+                                            <li>2</li>
+                                            <li>3</li>
+                                            <li>4</li>
+                                            <li>无限循环</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 动画延迟 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh26">延迟</div>
+                                <div class="options-item-content-hor">
+                                    <div class="drop-down-input-menu">
+                                        <div class="drop-down-input-menu-selected">
+                                            <div class="drop-down-input-wrapper">
+                                                <input type="text" class="drop-down-input set-animate-delay-input" value="0秒">
+                                            </div>
+                                            <div class="drop-down-menu-selected-btn set-animate-delay-btn">
+                                                <span class="drop-down-menu-selected-btn-arrow"></span>
+                                            </div>
+                                        </div>
+                                        <ul class="drop-down-input-menu-list" style="display: none;">
+                                            <li class="selected">0秒</li>
+                                            <li>0.5秒</li>
+                                            <li>1秒</li>
+                                            <li>1.5秒</li>
+                                            <li>2秒</li>
+                                            <li>2.5秒</li>
+                                            <li>3秒</li>
+                                            <li>3.5秒</li>
+                                            <li>4秒</li>
+                                            <li>4.5秒</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-options-box main-options-box-event">
+                            <div class="options-event-top pt20 pb20">
+                                <div class="options-item-select-btn select-btn-1 add-event-btn">添加事件</div>
+                            </div>
+                            <ul class="options-event-list">
+                                <li class="options-event-item">
+                                    <div class="options-event-item-topbar">
+                                        事件-1
+                                        <span class="options-event-item-topbar-arrow"></span>
+                                        <span class="options-event-item-del"></span>
+                                    </div>
+                                    <div class="options-event-item-content clearfix">
+                                        <div class="options-event-item-content-title">事件</div>
+                                        <div class="options-event-item-content-selectbox">
+                                            <div class="drop-down-menu">
+                                                <div class="drop-down-menu-selected set-event-type-btn">点击<span class="drop-down-menu-selected-arrow"></span></div>
+                                                <ul class="drop-down-menu-list" style="display: none;">
+                                                    <li>无</li>
+                                                    <li class="selected">点击</li>
+                                                    <li>长按</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="options-event-item-content clearfix">
+                                        <div class="options-event-item-content-title">效果</div>
+                                        <div class="options-event-item-content-selectbox">
+                                            <div class="drop-down-menu">
+                                                <div class="drop-down-menu-selected set-event-effect-btn">显示<span class="drop-down-menu-selected-arrow"></span></div>
+                                                <ul class="drop-down-menu-list" style="display: none;">
+                                                    <li>无</li>
+                                                    <li class="selected">显示</li>
+                                                    <li>隐藏</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="options-event-item-content clearfix">
+                                        <div class="options-event-item-content-title">元素</div>
+                                        <div class="options-event-item-content-selectbox">
+                                            <div class="drop-down-menu">
+                                                <div class="drop-down-menu-selected set-event-elem-btn">无<span class="drop-down-menu-selected-arrow"></span></div>
+                                                <ul class="drop-down-menu-list" style="display: none;">
+                                                    <li class="selected">无</li>
+                                                    <li>图像01</li>
+                                                    <li>文字02</li>
+                                                    <li>音频03</li>
+                                                    <li>按钮04</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--text-->
+                    <div class="main-options-body main-options-body-text">
+                        <div class="main-options-header">
+                            <ul class="main-options-nav">
+                                <li class="current">样式</li>
+                                <li>动画</li>
+                                <li>事件</li>
+                            </ul>
+                        </div>
+                        <div class="main-options-box main-options-box-style">
+                            <!-- 字体 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh26">字体</div>
+                                <div class="options-item-content-hor">
+                                    <div class="drop-down-menu">
+                                        <div class="drop-down-menu-selected set-text-font-family-btn">默认<span class="drop-down-menu-selected-arrow"></span></div>
+                                        <ul class="drop-down-menu-list" style="display: none;">
+                                            <li class="selected">默认</li>
+                                            <li>黑体</li>
+                                            <li>宋体</li>
+                                            <li>微软雅黑</li>
+                                            <li>Arial</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 字色 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh22">字色</div>
+                                <div class="options-item-content-hor">
+                                    <div class="options-item-color"></div>
+                                </div>
+                            </div>
+                            <!-- 字号 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh26">字号</div>
+                                <div class="options-item-content-hor">
+                                    <div class="drop-down-input-menu">
+                                        <div class="drop-down-input-menu-selected">
+                                            <div class="drop-down-input-wrapper">
+                                                <input type="text" class="drop-down-input set-text-font-size-input" value="18像素">
+                                            </div>
+                                            <div class="drop-down-menu-selected-btn set-text-font-size-btn">
+                                                <span class="drop-down-menu-selected-btn-arrow"></span>
+                                            </div>
+                                        </div>
+                                        <ul class="drop-down-input-menu-list" style="display: none;">
+                                            <li>12像素</li>
+                                            <li>14像素</li>
+                                            <li class="selected">18像素</li>
+                                            <li>22像素</li>
+                                            <li>24像素</li>
+                                            <li>30像素</li>
+                                            <li>32像素</li>
+                                            <li>36像素</li>
+                                            <li>48像素</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 行高 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh26">行高</div>
+                                <div class="options-item-content-hor">
+                                    <div class="drop-down-input-menu">
+                                        <div class="drop-down-input-menu-selected">
+                                            <div class="drop-down-input-wrapper">
+                                                <input type="text" class="drop-down-input set-text-line-height-input" value="1.2">
+                                            </div>
+                                            <div class="drop-down-menu-selected-btn set-text-line-height-btn">
+                                                <span class="drop-down-menu-selected-btn-arrow"></span>
+                                            </div>
+                                        </div>
+                                        <ul class="drop-down-input-menu-list" style="display: none;">
+                                            <li>1</li>
+                                            <li class="selected">1.2</li>
+                                            <li>1.5</li>
+                                            <li>2</li>
+                                            <li>2.5</li>
+                                            <li>3</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--字体样式列表-->
+                            <div class="options-item clearfix">
+                                <div class="text-font-style-box text-font-bold-box">
+                                    <div class="text-font-style-icon text-font-bold-icon"></div>
+                                </div>
+                                <div class="text-font-style-box text-font-underline-box">
+                                    <div class="text-font-style-icon text-font-underline-icon"></div>
+                                </div>
+                                <div class="text-font-style-box text-font-left-box">
+                                    <div class="text-font-style-icon text-font-left-icon"></div>
+                                </div>
+                                <div class="text-font-style-box text-font-center-box">
+                                    <div class="text-font-style-icon text-font-center-icon"></div>
+                                </div>
+                                <div class="text-font-style-box text-font-right-box">
+                                    <div class="text-font-style-icon text-font-right-icon"></div>
+                                </div>
+                                <div class="text-font-style-box text-font-link-box">
+                                    <div class="text-font-style-icon text-font-link-icon"></div>
+                                </div>
+                            </div>
+                            <div class="splitline"></div>
+                            <!--宽-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">宽度</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="100像素">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--高-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">高度</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="100像素">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--层级-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">层级</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="3">
+                                        <div class="options-item-input-btn options-item-input-add">
+                                            <div class="options-item-input-add-icon"></div>
+                                        </div>
+                                        <div class="options-item-input-btn options-item-input-reduce">
+                                            <div class="options-item-input-reduce-icon"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--X-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">X</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="97">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Y-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">Y</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="462">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-options-box main-options-box-animate" style="display: none;"></div>
+                        <div class="main-options-box main-options-box-event" style="display: none;"></div>
+                    </div>
+                    <!--view-->
+                    <div class="main-options-body main-options-body-view" style="display: none;">
+                        <div class="main-options-header">
+                            <ul class="main-options-nav">
+                                <li class="current">样式</li>
+                                <li>动画</li>
+                                <li>事件</li>
+                            </ul>
+                        </div>
+                        <div class="main-options-box main-options-box-style">
+                            <!-- 背景色 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh22">背景色</div>
+                                <div class="options-item-content-hor">
+                                    <div class="options-item-color"></div>
+                                </div>
+                            </div>
+                            <!-- 边框 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh26">边框</div>
+                                <div class="options-item-content-hor">
+                                    <div class="drop-down-input-menu">
+                                        <div class="drop-down-input-menu-selected">
+                                            <div class="drop-down-input-wrapper">
+                                                <input type="text" class="drop-down-input set-view-border-input" value="无">
+                                            </div>
+                                            <div class="drop-down-menu-selected-btn set-view-border-btn">
+                                                <span class="drop-down-menu-selected-btn-arrow"></span>
+                                            </div>
+                                        </div>
+                                        <ul class="drop-down-input-menu-list" style="display: none;">
+                                            <li class="selected">无</li>
+                                            <li>1像素</li>
+                                            <li>2像素</li>
+                                            <li>3像素</li>
+                                            <li>4像素</li>
+                                            <li>5像素</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 边框色 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh22">边框色</div>
+                                <div class="options-item-content-hor">
+                                    <div class="options-item-color"></div>
+                                </div>
+                            </div>
+                            <!--链接-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">链接</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box options-item-input-link">
+                                        <input type="text" class="text-input" value="" placeholder="请输入跳转链接">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--圆角-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh22">圆角</div>
+                                <div class="options-item-content-hor">
+                                    <div class="options-item-progress progress-wrapper">
+                                        <div class="progress-bar">
+                                            <div class="progress-curr-bar">
+                                                <div class="progress-curr-btn">
+                                                    <div class="progress-curr-icon"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="options-item-progress-num">150px</div>
+                                </div>
+                            </div>
+                            <!--透明度-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh22">透明度</div>
+                                <div class="options-item-content-hor">
+                                    <div class="options-item-progress progress-wrapper">
+                                        <div class="progress-bar">
+                                            <div class="progress-curr-bar">
+                                                <div class="progress-curr-btn">
+                                                    <div class="progress-curr-icon"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="options-item-progress-num">100%</div>
+                                </div>
+                            </div>
+                            <!--背景图预览区域-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-vert">
+                                    <span class="fl">背景图</span>
+                                    <div class="options-item-select-btn select-btn-1 fr mr20">选择背景</div>
+                                </div>
+                                <div class="options-item-content-vert">
+                                    <div class="options-item-imgview-box">
+                                        <div class="options-item-imgview" style="background-image: url(images/admin-head.jpg);"></div>
+                                        <div class="options-item-imgview-topbar">
+                                            <div class="options-item-imgview-close"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 背景位置 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh26">位置</div>
+                                <div class="options-item-content-hor">
+                                    <div class="drop-down-menu">
+                                        <div class="drop-down-menu-selected set-view-bg-position-btn">居中对齐<span class="drop-down-menu-selected-arrow"></span></div>
+                                        <ul class="drop-down-menu-list" style="display: none;">
+                                            <li class="selected">居中对齐</li>
+                                            <li>顶对齐</li>
+                                            <li>底对齐</li>
+                                            <li>左对齐</li>
+                                            <li>右对齐</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 背景尺寸 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh26">尺寸</div>
+                                <div class="options-item-content-hor">
+                                    <div class="drop-down-menu">
+                                        <div class="drop-down-menu-selected set-view-bg-size-btn">默认<span class="drop-down-menu-selected-arrow"></span></div>
+                                        <ul class="drop-down-menu-list" style="display: none;">
+                                            <li class="selected">默认</li>
+                                            <li>cover</li>
+                                            <li>contain</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="splitline"></div>
+                            <!--宽-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">宽度</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="100像素">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--高-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">高度</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="100像素">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--层级-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">层级</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="3">
+                                        <div class="options-item-input-btn options-item-input-add">
+                                            <div class="options-item-input-add-icon"></div>
+                                        </div>
+                                        <div class="options-item-input-btn options-item-input-reduce">
+                                            <div class="options-item-input-reduce-icon"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--X-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">X</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="97">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Y-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">Y</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="462">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-options-box main-options-box-animate" style="display: none;"></div>
+                        <div class="main-options-box main-options-box-event" style="display: none;"></div>
+                    </div>
+                    <!--image-->
+                    <div class="main-options-body main-options-body-image" style="display: none;">
+                        <div class="main-options-header">
+                            <ul class="main-options-nav">
+                                <li class="current">样式</li>
+                                <li>动画</li>
+                                <li>事件</li>
+                            </ul>
+                        </div>
+                        <div class="main-options-box main-options-box-style">
+                            <!--图片预览区域-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-vert">
+                                    <span class="fl">图片</span>
+                                    <div class="options-item-select-btn select-btn-1 fr mr20">选择背景</div>
+                                </div>
+                                <div class="options-item-content-vert">
+                                    <div class="options-item-imgview-box">
+                                        <div class="options-item-imgview" style="background-image: url(images/admin-head.jpg);"></div>
+                                        <div class="options-item-imgview-topbar">
+                                            <div class="options-item-imgview-close"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 边框 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh26">边框</div>
+                                <div class="options-item-content-hor">
+                                    <div class="drop-down-input-menu">
+                                        <div class="drop-down-input-menu-selected">
+                                            <div class="drop-down-input-wrapper">
+                                                <input type="text" class="drop-down-input set-image-border-input" value="无">
+                                            </div>
+                                            <div class="drop-down-menu-selected-btn set-image-border-btn">
+                                                <span class="drop-down-menu-selected-btn-arrow"></span>
+                                            </div>
+                                        </div>
+                                        <ul class="drop-down-input-menu-list" style="display: none;">
+                                            <li class="selected">无</li>
+                                            <li>1像素</li>
+                                            <li>2像素</li>
+                                            <li>3像素</li>
+                                            <li>4像素</li>
+                                            <li>5像素</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 边框色 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh22">边框色</div>
+                                <div class="options-item-content-hor">
+                                    <div class="options-item-color"></div>
+                                </div>
+                            </div>
+                            <!--链接-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">链接</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box options-item-input-link">
+                                        <input type="text" class="text-input" value="" placeholder="请输入跳转链接">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--圆角-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh22">圆角</div>
+                                <div class="options-item-content-hor">
+                                    <div class="options-item-progress progress-wrapper">
+                                        <div class="progress-bar">
+                                            <div class="progress-curr-bar">
+                                                <div class="progress-curr-btn">
+                                                    <div class="progress-curr-icon"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="options-item-progress-num">150px</div>
+                                </div>
+                            </div>
+                            <!--透明度-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh22">透明度</div>
+                                <div class="options-item-content-hor">
+                                    <div class="options-item-progress progress-wrapper">
+                                        <div class="progress-bar">
+                                            <div class="progress-curr-bar">
+                                                <div class="progress-curr-btn">
+                                                    <div class="progress-curr-icon"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="options-item-progress-num">100%</div>
+                                </div>
+                            </div>
+                            <div class="splitline"></div>
+                            <!--宽-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">宽度</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="100像素">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--高-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">高度</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="100像素">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--层级-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">层级</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="3">
+                                        <div class="options-item-input-btn options-item-input-add">
+                                            <div class="options-item-input-add-icon"></div>
+                                        </div>
+                                        <div class="options-item-input-btn options-item-input-reduce">
+                                            <div class="options-item-input-reduce-icon"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--X-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">X</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="97">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Y-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">Y</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="462">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-options-box main-options-box-animate" style="display: none;"></div>
+                        <div class="main-options-box main-options-box-event" style="display: none;"></div>
+                    </div>
+                    <!--button-->
+                    <div class="main-options-body main-options-body-button" style="display: none;">
+                        <div class="main-options-header">
+                            <ul class="main-options-nav">
+                                <li class="current">样式</li>
+                                <li>动画</li>
+                                <li>事件</li>
+                            </ul>
+                        </div>
+                        <div class="main-options-box main-options-box-style">
+                            <!--文字-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">文字</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="按钮" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 字体 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh26">字体</div>
+                                <div class="options-item-content-hor">
+                                    <div class="drop-down-menu">
+                                        <div class="drop-down-menu-selected set-button-font-family-btn">默认<span class="drop-down-menu-selected-arrow"></span></div>
+                                        <ul class="drop-down-menu-list" style="display: none;">
+                                            <li class="selected">默认</li>
+                                            <li>黑体</li>
+                                            <li>宋体</li>
+                                            <li>微软雅黑</li>
+                                            <li>Arial</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 字色 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh22">字色</div>
+                                <div class="options-item-content-hor">
+                                    <div class="options-item-color"></div>
+                                </div>
+                            </div>
+                            <!-- 字号 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh26">字号</div>
+                                <div class="options-item-content-hor">
+                                    <div class="drop-down-input-menu">
+                                        <div class="drop-down-input-menu-selected">
+                                            <div class="drop-down-input-wrapper">
+                                                <input type="text" class="drop-down-input set-button-font-size-input" value="18像素">
+                                            </div>
+                                            <div class="drop-down-menu-selected-btn set-button-font-size-btn">
+                                                <span class="drop-down-menu-selected-btn-arrow"></span>
+                                            </div>
+                                        </div>
+                                        <ul class="drop-down-input-menu-list" style="display: none;">
+                                            <li>12像素</li>
+                                            <li>14像素</li>
+                                            <li class="selected">18像素</li>
+                                            <li>22像素</li>
+                                            <li>24像素</li>
+                                            <li>30像素</li>
+                                            <li>32像素</li>
+                                            <li>36像素</li>
+                                            <li>48像素</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 背景色 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh22">背景色</div>
+                                <div class="options-item-content-hor">
+                                    <div class="options-item-color"></div>
+                                </div>
+                            </div>
+                            <!-- 边框 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh26">边框</div>
+                                <div class="options-item-content-hor">
+                                    <div class="drop-down-input-menu">
+                                        <div class="drop-down-input-menu-selected">
+                                            <div class="drop-down-input-wrapper">
+                                                <input type="text" class="drop-down-input set-button-border-input" value="无">
+                                            </div>
+                                            <div class="drop-down-menu-selected-btn set-button-border-btn">
+                                                <span class="drop-down-menu-selected-btn-arrow"></span>
+                                            </div>
+                                        </div>
+                                        <ul class="drop-down-input-menu-list" style="display: none;">
+                                            <li class="selected">无</li>
+                                            <li>1像素</li>
+                                            <li>2像素</li>
+                                            <li>3像素</li>
+                                            <li>4像素</li>
+                                            <li>5像素</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 边框色 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh22">边框色</div>
+                                <div class="options-item-content-hor">
+                                    <div class="options-item-color"></div>
+                                </div>
+                            </div>
+                            <!--链接-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">链接</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box options-item-input-link">
+                                        <input type="text" class="text-input" value="" placeholder="请输入跳转链接">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--圆角-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh22">圆角</div>
+                                <div class="options-item-content-hor">
+                                    <div class="options-item-progress progress-wrapper">
+                                        <div class="progress-bar">
+                                            <div class="progress-curr-bar">
+                                                <div class="progress-curr-btn">
+                                                    <div class="progress-curr-icon"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="options-item-progress-num">150px</div>
+                                </div>
+                            </div>
+                            <!--透明度-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh22">透明度</div>
+                                <div class="options-item-content-hor">
+                                    <div class="options-item-progress progress-wrapper">
+                                        <div class="progress-bar">
+                                            <div class="progress-curr-bar">
+                                                <div class="progress-curr-btn">
+                                                    <div class="progress-curr-icon"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="options-item-progress-num">100%</div>
+                                </div>
+                            </div>
+                            <div class="splitline"></div>
+                            <!--宽-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">宽度</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="100像素">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--高-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">高度</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="100像素">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--层级-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">层级</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="3">
+                                        <div class="options-item-input-btn options-item-input-add">
+                                            <div class="options-item-input-add-icon"></div>
+                                        </div>
+                                        <div class="options-item-input-btn options-item-input-reduce">
+                                            <div class="options-item-input-reduce-icon"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--X-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">X</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="97">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Y-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">Y</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="462">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-options-box main-options-box-animate" style="display: none;"></div>
+                        <div class="main-options-box main-options-box-event" style="display: none;"></div>
+                    </div>
+                    <!--audio-->
+                    <div class="main-options-body main-options-body-audio" style="display: none;">
+                        <div class="main-options-header">
+                            <ul class="main-options-nav">
+                                <li class="current">样式</li>
+                                <li>动画</li>
+                                <li>事件</li>
+                            </ul>
+                        </div>
+                        <div class="main-options-box main-options-box-style">
+                            <!-- 选择歌曲 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh26">歌曲</div>
+                                <div class="options-item-content-hor">
+                                    <div class="options-item-select-btn select-btn-1">选择歌曲</div>
+                                </div>
+                            </div>
+                            <!--图片预览区域-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-vert">
+                                    <span class="fl">播放状态图</span>
+                                    <div class="options-item-select-btn select-btn-1 fr mr20">选择图片</div>
+                                </div>
+                                <div class="options-item-content-vert">
+                                    <div class="options-item-imgview-box">
+                                        <div class="options-item-imgview" style="background-image: url(images/admin-head.jpg);"></div>
+                                        <div class="options-item-imgview-topbar">
+                                            <div class="options-item-imgview-close"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--图片预览区域-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-vert">
+                                    <span class="fl">暂停状态图</span>
+                                    <div class="options-item-select-btn select-btn-1 fr mr20">选择图片</div>
+                                </div>
+                                <div class="options-item-content-vert">
+                                    <div class="options-item-imgview-box">
+                                        <div class="options-item-imgview" style="background-image: url(images/admin-head.jpg);"></div>
+                                        <div class="options-item-imgview-topbar">
+                                            <div class="options-item-imgview-close"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="splitline"></div>
+                            <!--宽-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">宽度</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="100像素">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--高-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">高度</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="100像素">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--层级-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">层级</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="3">
+                                        <div class="options-item-input-btn options-item-input-add">
+                                            <div class="options-item-input-add-icon"></div>
+                                        </div>
+                                        <div class="options-item-input-btn options-item-input-reduce">
+                                            <div class="options-item-input-reduce-icon"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--X-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">X</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="97">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Y-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">Y</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="462">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-options-box main-options-box-animate" style="display: none;"></div>
+                        <div class="main-options-box main-options-box-event" style="display: none;"></div>
+                    </div>
+                    <!--video-->
+                    <div class="main-options-body main-options-body-video" style="display: none;">
+                        <div class="main-options-header">
+                            <ul class="main-options-nav">
+                                <li class="current">样式</li>
+                                <li>动画</li>
+                                <li>事件</li>
+                            </ul>
+                        </div>
+                        <div class="main-options-box main-options-box-style">
+                            <!-- 选择视频 -->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor lh26">视频</div>
+                                <div class="options-item-content-hor">
+                                    <div class="options-item-select-btn select-btn-1">选择视频</div>
+                                </div>
+                            </div>
+                            <!--图片预览区域-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-vert">
+                                    <span class="fl">视频封面</span>
+                                    <div class="options-item-select-btn select-btn-1 fr mr20">选择图片</div>
+                                </div>
+                                <div class="options-item-content-vert">
+                                    <div class="options-item-imgview-box">
+                                        <div class="options-item-imgview" style="background-image: url(images/admin-head.jpg);"></div>
+                                        <div class="options-item-imgview-topbar">
+                                            <div class="options-item-imgview-close"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="splitline"></div>
+                            <!--宽-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">宽度</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="100像素">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--高-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">高度</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="100像素">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--层级-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">层级</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="3">
+                                        <div class="options-item-input-btn options-item-input-add">
+                                            <div class="options-item-input-add-icon"></div>
+                                        </div>
+                                        <div class="options-item-input-btn options-item-input-reduce">
+                                            <div class="options-item-input-reduce-icon"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--X-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">X</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="97">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Y-->
+                            <div class="options-item clearfix">
+                                <div class="options-item-title-hor w26 lh26">Y</div>
+                                <div class="options-item-content-hor">
+                                    <div class="text-input-box options-item-input-box">
+                                        <input type="text" class="text-input" value="462">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-options-box main-options-box-animate" style="display: none;"></div>
+                        <div class="main-options-box main-options-box-event" style="display: none;"></div>
+                    </div>
+                </div>
+                <!--preview-->
+                <div class="main-preview">
+                    <div class="main-preview-page">
+                        <div class="ui-draggable controls-image active" style="width:320px;height:100px;display:block;left:0px;top:0px;z-index:1;">
+                            <em class="ui-resizable ui-resizable-top" data-type="top"></em>
+                            <em class="ui-resizable ui-resizable-left" data-type="left"></em>
+                            <em class="ui-resizable ui-resizable-bottom" data-type="bottom"></em>
+                            <em class="ui-resizable ui-resizable-right" data-type="right"></em>
+                            <em class="ui-resizable ui-resizable-nw" data-type="lefttop"></em>
+                            <em class="ui-resizable ui-resizable-ne" data-type="righttop"></em>
+                            <em class="ui-resizable ui-resizable-sw" data-type="leftbottom"></em>
+                            <em class="ui-resizable ui-resizable-se" data-type="rightbottom"></em>
+                            <div class="drag-ele">
+                                <img src="/images/test.jpg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-preview-play"></div>
+                </div>
+                <!--thumb-->
+                <div class="main-thumb">
+                    <div class="main-thumb-topbar"></div>
+                    <div class="main-thumb-box">
+                        <ul class="main-thumb-list">
+                            <li class="current">
+                                <div class="main-thumb-number">1</div>
+                                <div class="main-thumb-preview">
+                                    <div class="main-thumb-preview-topbar">
+                                        <div class="main-thumb-preview-topbar-del"></div>
+                                    </div>
+                                    <div class="main-thumb-preview-add">
+                                        <div class="main-thumb-preview-add-icon">
+                                            <span class="main-thumb-preview-add-line main-thumb-preview-add-s"></span>
+                                            <span class="main-thumb-preview-add-line main-thumb-preview-add-h"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="main-thumb-number">2</div>
+                                <div class="main-thumb-preview">
+                                    <div class="main-thumb-preview-topbar">
+                                        <div class="main-thumb-preview-topbar-del"></div>
+                                    </div>
+                                    <div class="main-thumb-preview-add">
+                                        <div class="main-thumb-preview-add-icon">
+                                            <span class="main-thumb-preview-add-line main-thumb-preview-add-s"></span>
+                                            <span class="main-thumb-preview-add-line main-thumb-preview-add-h"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--弹窗 ALL-->
+            <div class="window">
+                <!--图库弹窗-->
+                <div class="container-window window-gallery" style="display: none;">
+                    <div class="mask-layer"></div>
+                    <div class="gallery-box win-box">
+                        <div class="win-header">
+                            <ul class="win-header-tabs-1">
+                                <li class="current">图片库</li>
+                                <li>我的图库</li>
+                            </ul>
+                            <div class="win-header-close"></div>
+                        </div>
+                        <div class="win-topbar">
+                            <div class="win-topbar-btn select-btn-2">上传图片</div>
+                        </div>
+                        <div class="win-body gallery-body">
+                            <ul class="gallery-list clearfix">
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                                <li style="background-image: url(/images/test.jpg);"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--音频弹窗-->
+                <div class="container-window window-audio" style="display: none;">
+                    <div class="mask-layer"></div>
+                    <div class="audio-box win-box">
+                        <div class="win-header">
+                            <ul class="win-header-tabs-1">
+                                <li class="current">我的音乐</li>
+                                <li>乐库</li>
+                            </ul>
+                            <div class="win-header-close"></div>
+                        </div>
+                        <div class="win-topbar">
+                            <div class="win-topbar-btn select-btn-2">上传歌曲</div>
+                            <div class="win-topbar-btn select-btn-2">添加外链</div>
+                        </div>
+                        <div class="win-body audio-body">
+                            <ul class="audio-list clearfix">
+                                <li>
+                                    <span class="win-audio-name">90269170.m4a</span>
+                                    <span class="win-audio-playbtn play"></span>
+                                </li>
+                                <li class="current">
+                                    <span class="win-audio-name">90269170.m4a</span>
+                                    <span class="win-audio-playbtn paused"></span>
+                                </li>
+                                <li>
+                                    <span class="win-audio-name">90269170.m4a</span>
+                                    <span class="win-audio-playbtn play"></span>
+                                </li>
+                            </ul>
+                            <div class="win-selectbtn win-selectbtn-ok">确认</div>
+                            <div class="win-selectbtn win-selectbtn-cancel">取消</div>
+                        </div>
+                    </div>
+                </div>
+                <!--视频弹窗-->
+                <div class="container-window window-video" style="display: none;">
+                    <div class="mask-layer"></div>
+                    <div class="video-box win-box">
+                        <div class="win-header">
+                            <ul class="win-header-tabs-1 video-tabs">
+                                <li class="current">视频链接</li>
+                            </ul>
+                            <div class="win-header-close"></div>
+                        </div>
+                        <div class="win-body video-body">
+                            <div class="video-content">
+                                <p class="video-content-title fl">视频链接</p>
+                                <div class="text-input-box input-box-video fl">
+                                    <input type="text" class="text-input" value="http://upcdn.song.m.mvbox.cn/m4a/70/90269170.m4a">
+                                </div>
+                            </div>
+                            <div class="win-selectbtn win-selectbtn-ok">确认</div>
+                            <div class="win-selectbtn win-selectbtn-cancel">取消</div>
+                        </div>
+                    </div>
+                </div>
+                <!--链接弹窗-->
+                <div class="container-window window-link" style="display: none;">
+                    <div class="mask-layer"></div>
+                    <div class="video-box win-box">
+                        <div class="win-header">
+                            <ul class="win-header-tabs-1 video-tabs">
+                                <li class="current">链接</li>
+                            </ul>
+                            <div class="win-header-close"></div>
+                        </div>
+                        <div class="win-body video-body">
+                            <div class="video-content">
+                                <p class="video-content-title fl">链接</p>
+                                <div class="text-input-box input-box-video fl">
+                                    <input type="text" class="text-input" value="http://upcdn.song.m.mvbox.cn/m4a/70/90269170.m4a">
+                                </div>
+                            </div>
+                            <div class="win-selectbtn win-selectbtn-ok">确认</div>
+                            <div class="win-selectbtn win-selectbtn-cancel">取消</div>
+                        </div>
+                    </div>
+                </div>
+                <!--发布弹窗-->
+                <div class="container-window window-publish" style="display: none;">
+                    <div class="mask-layer"></div>
+                    <div class="publish-box win-box">
+                        <div class="win-header">
+                            <ul class="win-header-tabs-1 publish-tabs">
+                                <li class="current">完善信息</li>
+                            </ul>
+                            <div class="win-header-close"></div>
+                        </div>
+                        <div class="win-body publish-body clearfix">
+                            <div class="publish-content-l fl">
+                                <p class="publish-content-title">应用名称</p>
+                                <div class="text-input-box input-box-publish fl">
+                                    <input type="text" class="text-input" value="http://upcdn.song.m.mvbox.cn/m4a/70/90269170.m4a">
+                                </div>
+                                <p class="publish-content-title">应用描述</p>
+                                <div class="text-input-box textarea-box-publish fl">
+                                    <textarea type="text" class="text-input" value="http://upcdn.song.m.mvbox.cn/m4a/70/90269170.m4a"></textarea>
+                                </div>
+                            </div>
+                            <div class="publish-content-r fr">
+                                <p class="publish-content-title">应用封面</p>
+                                <div class="publish-content-cover-wrapper">
+                                    <div class="publish-content-cover default-cover">
+                                        <div class="publish-select-pic-btn select-btn-1">修改封面</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="win-selectbtn win-selectbtn-ok">发布</div>
+                            <div class="win-selectbtn win-selectbtn-cancel">取消</div>
+                        </div>
+                    </div>
+                </div>
+                <!--页面配置-->
+                <div class="container-window window-pageset" style="display: none;">
+                    <div class="mask-layer"></div>
+                    <div class="pageset-box win-box">
+                        <div class="win-header">
+                            <ul class="win-header-tabs-1 pageset-tabs">
+                                <li class="current">页面配置</li>
+                            </ul>
+                            <div class="win-header-close"></div>
+                        </div>
+                        <div class="win-body pageset-body">
+                            <div class="pageset-item">
+                                <div class="pageset-item-checkbox checked">
+                                    <div class="pageset-item-checkbox-icon"></div>
+                                </div>
+                                <p class="pageset-item-txt">开启点赞</p>
+                            </div>
+                            <div class="pageset-item">
+                                <div class="pageset-item-checkbox">
+                                    <div class="pageset-item-checkbox-icon"></div>
+                                </div>
+                                <p class="pageset-item-txt">开启浏览次数</p>
+                            </div>
+                            <div class="pageset-item">
+                                <div class="pageset-item-checkbox checked">
+                                    <div class="pageset-item-checkbox-icon"></div>
+                                </div>
+                                <p class="pageset-item-txt">开启评论</p>
+                            </div>
+                            <div class="pageset-item">
+                                <div class="pageset-item-checkbox">
+                                    <div class="pageset-item-checkbox-icon"></div>
+                                </div>
+                                <p class="pageset-item-txt">开启图层列表</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--图层列表-->
+                <div class="container-window window-layerlist" style="display: none;">
+                    <div class="layerlist-box win-box">
+                        <div class="win-header">
+                            <ul class="win-header-tabs-1 layerlist-tabs">
+                                <li class="current">图层</li>
+                            </ul>
+                            <div class="win-header-close"></div>
+                        </div>
+                        <div class="win-body layerlist-body">
+                            <div class="layerlist-topbar">
+                                <div class="layerlist-del-btn"></div>
+                            </div>
+                            <ul class="layerlist">
+                                <li class="default-layer-item">
+                                    <div class="layerlist-item-look block">
+                                        <div class="layerlist-item-look-icon"></div>
+                                    </div>
+                                    <div class="layerlist-item-txt">图层35</div>
+                                </li>
+                                <li>
+                                    <div class="layerlist-item-look block">
+                                        <div class="layerlist-item-look-icon"></div>
+                                    </div>
+                                    <div class="layerlist-item-txt">图层35</div>
+                                </li>
+                                <li>
+                                    <div class="layerlist-item-look block">
+                                        <div class="layerlist-item-look-icon"></div>
+                                    </div>
+                                    <div class="layerlist-item-txt">图层35</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--预览弹窗-->
+                <div class="container-window window-preview" style="display: none;">
+                    <div class="mask-layer"></div>
+                    <div class="window-preview-box">
+                        <div class="window-preview-header">预览<div class="window-preview-close-btn"></div></div>
+                        <div class="window-preview-content">
+                            <div class="window-preview-show-container">
+                                <div class="window-preview-swipe-btn window-preview-prev-btn"></div>
+                                <div class="window-preview-swipe-btn window-preview-next-btn"></div>
+                            </div>
+                            <div class="window-preview-info">
+                                <img class="window-preview-qrcode" src="">
+                                <p class="window-preview-qrcode-txt">扫描二维码在手机上预览</p>
+                                <div class="window-preview-link-box">
+                                    <div class="window-preview-link fl">
+                                        <input type="text" value="http://ppt.51vv.com/expand/d125823e-6412-44fa-aed9-65774e87XE83" readonly class="window-preview-link-input">
+                                    </div>
+                                    <a href="http://ppt.51vv.com/expand/d125823e-6412-44fa-aed9-65774e87XE83" target="_blank" title="http://ppt.51vv.com/expand/d125823e-6412-44fa-aed9-65774e87XE83" class="window-preview-href fl">打开</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--右键菜单-->
+            <ul class="contextmenu-list" style="display: none;">
+                <li>复制本页</li>
+                <li>删除本页</li>
+                <li>收藏本页</li>
+            </ul>
+        </div>
+        <script src="/m-build/jquery-1.8.3.min.js"></script>
+        <script>
+        $('.set-animate-type-btn, .set-text-font-family-btn').on('click', function () {
+            if ($(this).siblings('.drop-down-menu-list').is(':hidden')) {
+                $(this).addClass('active');
+                $(this).siblings('.drop-down-menu-list').show();
+            } else {
+                $(this).removeClass('active');
+                $(this).siblings('.drop-down-menu-list').hide();
+            }
+        })
+        
+        $('.set-animate-timing-btn, .set-animate-count-btn, .set-animate-delay-btn, .set-text-font-size-btn, .set-text-line-height-btn, .set-view-border-btn').on('click', function () {
+            if ($(this).parent().siblings('.drop-down-input-menu-list').is(':hidden')) {
+                $(this).addClass('active');
+                $(this).parent().siblings('.drop-down-input-menu-list').show();
+            } else {
+                $(this).removeClass('active');
+                $(this).parent().siblings('.drop-down-input-menu-list').hide();
+            }
+        })
+
+        $('.set-event-type-btn,.set-event-effect-btn,.set-event-elem-btn').on('click', function () {
+            if ($(this).siblings('.drop-down-menu-list').is(':hidden')) {
+                $(this).addClass('active');
+                $(this).siblings('.drop-down-menu-list').show();
+            } else {
+                $(this).removeClass('active');
+                $(this).siblings('.drop-down-menu-list').hide();
+            }
+        })
+        </script>
+    </body>
+</html>

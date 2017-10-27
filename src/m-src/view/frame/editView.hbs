@@ -1,0 +1,743 @@
+<div class="asider-options">
+    <div class="aside-menu">
+        <div class="aside-menu-title">
+            <input type="text" placeholder="输入网页标题" value="{{title}}" class="menu-title-input">
+        </div>
+        <div class="aside-menu-set">
+            <div class="menu-set-icon"></div>
+        </div>
+    </div>
+    <div class="aside-body">
+        <div class="aside-options-panel">
+            <!-- 文本配置 -->
+            <div class="aside-options-body aside-options-font" style="display:none;">
+                <div class="textCintainerBox">
+                    <div class="options-item-title options-item-title-first">容器大小</div>
+                    <div class="options-item-box clearfix">
+                        <div class="options-item fl">
+                            <div class="options-item-input-desc">宽：</div>
+                            <input type="text" class="options-item-input set-text-width" data-key="width" value="{{text.style.width}}">
+                        </div>
+                        <div class="options-item fl ml10">
+                            <div class="options-item-input-desc">高：</div>
+                            <input type="text" class="options-item-input set-text-height" data-key="height" value="{{text.style.height}}">
+                        </div>
+                    </div>
+                    <div class="options-item-title">偏移</div>
+                    <div class="options-item-box clearfix">
+                        <div class="options-item fl">
+                            <div class="options-item-input-desc">上：</div>
+                            <input type="text" class="options-item-input set-text-top" data-key="top" value="{{text.style.top}}">
+                        </div>
+                        <div class="options-item fl ml10">
+                            <div class="options-item-input-desc">左：</div>
+                            <input type="text" class="options-item-input set-text-left" data-key="left" value="{{text.style.left}}">
+                        </div>
+                        <div class="options-item fl mt10">
+                            <div class="options-item-input-desc">下：</div>
+                            <input type="text" class="options-item-input set-text-bottom" data-key="bottom" value="{{text.style.bottom}}">
+                        </div>
+                        <div class="options-item fl ml10 mt10">
+                            <div class="options-item-input-desc">右：</div>
+                            <input type="text" class="options-item-input set-text-right" data-key="right" value="{{text.style.right}}">
+                        </div>
+                    </div>
+                    <div class="options-item-title">层级</div>
+                    <div class="options-item-box">
+                        <div class="options-item">
+                            <input type="text" class="options-item-input set-text-zIndex" value="{{text.style.zIndex}}">
+                            <div class="options-adjust-add set-text-zIndex-add"></div>
+                            <div class="options-adjust-reduce set-text-zIndex-reduce"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="textEditBox ke-toolbar">
+                    <div class="options-item-title">字体属性</div>
+                    <div class="options-item-box clearfix">
+                        <div class="ke-toolbar-icon text-tool-icon ke-toolbar-icon-bold" data-cmd="bold" title="加粗"></div>
+                        <div class="ke-toolbar-icon text-tool-icon ke-toolbar-icon-underline" data-cmd="underline" title="下划线"></div>
+                        <div class="ke-toolbar-icon text-tool-icon ke-toolbar-icon-justifyleft toolbar-icon-justify" data-cmd="justifyleft" data-cmd-param="left" title="居左"></div>
+                        <div class="ke-toolbar-icon text-tool-icon ke-toolbar-icon-justifycenter toolbar-icon-justify" data-cmd="justifycenter" data-cmd-param="center" title="居中"></div>
+                        <div class="ke-toolbar-icon text-tool-icon ke-toolbar-icon-justifyright toolbar-icon-justify" data-cmd="justifyright" data-cmd-param="right" title="居右"></div>
+                        <div class="ke-toolbar-icon text-tool-icon ke-toolbar-icon-href" data-cmd="href" title="链接"></div>
+                    </div>
+                    <div class="options-item-box clearfix mt10">
+                        <div class="options-item options-item-font-family fl" title="字体">
+                            <div class="options-item-selected options-item-font-family-selected">黑体</div>
+                            <ul class="options-item-select font-family-select">
+                                <li class="options-item-option" data-name="黑体">黑体</li>
+                                <li class="options-item-option" data-name="宋体">宋体</li>
+                                <li class="options-item-option" data-name="微软雅黑">微软雅黑</li>
+                                <li class="options-item-option" data-name="Sans-serif">Sans-serif</li>
+                                <li class="options-item-option" data-name="Helvetica">Helvetica</li>
+                            </ul>
+                            <div class="font-family-icon"></div>
+                            <div class="options-item-select-arrow"></div>
+                        </div>
+                        <div class="options-item options-item-font-size fl" title="字号">
+                            <div class="options-item-selected options-item-font-size-selected">14px</div>
+                            <ul class="options-item-select font-size-select">
+                                <li class="options-item-option">12px</li>
+                                <li class="options-item-option">13px</li>
+                                <li class="options-item-option">14px</li>
+                                <li class="options-item-option">15px</li>
+                                <li class="options-item-option">16px</li>
+                                <li class="options-item-option">18px</li>
+                                <li class="options-item-option">20px</li>
+                                <li class="options-item-option">22px</li>
+                                <li class="options-item-option">24px</li>
+                                <li class="options-item-option">28px</li>
+                                <li class="options-item-option">30px</li>
+                                <li class="options-item-option">36px</li>
+                                <li class="options-item-option">48px</li>
+                            </ul>
+                            <div class="font-size-icon"></div>
+                            <div class="options-item-select-arrow"></div>
+                        </div>
+                    </div>
+                    <div class="options-item-box clearfix mt10">
+                        <div class="options-item options-item-color options-item-font-color fl" title="字体颜色">
+                            <div class="options-item-selected options-item-color-selected options-item-font-color-selected">#333333</div>
+                            <div class="color-icon font-color-icon"></div>
+                        </div>
+                        {{!--<div class="options-item options-item-line-height fl" title="行高">
+                            <div class="line-height-icon"></div>
+                            <div class="options-item-selected options-item-input-line-height">1</div>
+                            <ul class="options-item-select line-height-select">
+                                <li class="options-item-option">1</li>
+                                <li class="options-item-option">1.2</li>
+                                <li class="options-item-option">1.5</li>
+                                <li class="options-item-option">2</li>
+                                <li class="options-item-option">2.5</li>
+                                <li class="options-item-option">3</li>
+                                <li class="options-item-option">3.5</li>
+                            </ul>
+                            <div class="options-item-select-arrow"></div>
+                        </div>--}}
+                    </div>
+                </div>
+            </div>
+            <!-- 容器配置 -->
+            <div class="aside-options-body aside-options-view" style="display:none;">
+                <div class="options-item-title options-item-title-first">背景颜色</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-item options-item-color fl" id="view-bgColor">
+                        <div class="options-item-selected options-item-color-selected container-color-selected">{{view.style.backgroundColor}}</div>
+                        <div class="color-icon container-color-icon" style="background-color:{{view.style.backgroundColor}}"></div>
+                    </div>
+                </div>
+                <div class="options-item-title">容器大小</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-item fl">
+                        <div class="options-item-input-desc">宽：</div>
+                        <input type="text" class="options-item-input set-view-width" data-key="width" value="{{view.style.width}}">
+                    </div>
+                    <div class="options-item fl ml10">
+                        <div class="options-item-input-desc">高：</div>
+                        <input type="text" class="options-item-input set-view-height" data-key="height" value="{{view.style.height}}">
+                    </div>
+                </div>
+                <div class="options-item-title-wrapper clearfix" id="container-border">
+                    <div class="options-item-title fl">边框</div>
+                    {{#if view.border}}
+                    <div class="switch-btn on fr">
+                        <div class="switch-btn-icon"></div>
+                    </div>
+                    {{else}}
+                    <div class="switch-btn off fr">
+                        <div class="switch-btn-icon"></div>
+                    </div>
+                    {{/if}}
+                </div>
+                <div class="options-item-box container-border-box clearfix" style="display:none;">
+                    <div class="border-view fl">
+                        <div class="border-view-box"></div>
+                        <div class="border-view-line border-view-line-top" data-line="top"></div>
+                        <div class="border-view-line border-view-line-left" data-line="left"></div>
+                        <div class="border-view-line border-view-line-bottom" data-line="bottom"></div>
+                        <div class="border-view-line border-view-line-right" data-line="right"></div>
+                    </div>
+                    <div class="birder-options fl ml10">
+                        <div class="border-options-color">
+                            <div class="options-item-selected border-options-color-value container-options-border-color">#333333</div>
+                            <div class="color-icon border-color-icon container-border-color-icon" style="background-color:#333333"></div>
+                        </div>
+                        <div class="border-options-other clearfix">
+                            <div class="border-options-width"><input type="text" class="border-options-width-input container-options-border-width" value="{{view.style.borderWidth}}px"></div>
+                            <div class="border-options-type border-options-solid container-options-border-type current" data-type="solid" title="标准"></div>
+                            <div class="border-options-type border-options-dot container-options-border-type" data-type="dotted" title="点线"></div>
+                            <div class="border-options-type border-options-dashed container-options-border-type" data-type="dashed" title="虚线"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="options-item-title">层级</div>
+                <div class="options-item-box">
+                    <div class="options-item">
+                        <input type="text" class="options-item-input container-zIndex" value="{{view.style.zIndex}}">
+                        <div class="options-adjust-add container-zIndex-add"></div>
+                        <div class="options-adjust-reduce container-zIndex-reduce"></div>
+                    </div>
+                </div>
+                <!-- 绝对定位显示选项 -->
+                <div class="options-item-title">偏移</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-item fl">
+                        <div class="options-item-input-desc">上：</div>
+                        <input type="text" class="options-item-input set-view-top" data-key="top" value="{{view.style.top}}">
+                    </div>
+                    <div class="options-item fl ml10">
+                        <div class="options-item-input-desc">左：</div>
+                        <input type="text" class="options-item-input set-view-left" data-key="left" value="{{view.style.left}}">
+                    </div>
+                    <div class="options-item fl mt10">
+                        <div class="options-item-input-desc">下：</div>
+                        <input type="text" class="options-item-input set-view-bottom" data-key="bottom" value="{{view.style.bottom}}">
+                    </div>
+                    <div class="options-item fl ml10 mt10">
+                        <div class="options-item-input-desc">右：</div>
+                        <input type="text" class="options-item-input set-view-right" data-key="right" value="{{view.style.right}}">
+                    </div>
+                </div>
+                
+                <div class="options-item-title">扩展（链接客户端功能）</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-item set-native fl">
+                        <div class="options-item-selected set-native-selected">选择应用</div>
+                        <ul class="options-item-select">
+                            <li class="options-item-option" data-app="">选择应用</li>
+                            {{#each native}}
+                            <li class="options-item-option" data-app="{{this.type}}">{{this.name}}</li>
+                            {{/each}}
+                        </ul>
+                        <div class="options-item-select-arrow"></div>
+                    </div>
+                    <div class="options-item set-native-method fl ml10">
+                        <div class="options-item-selected set-native-method-selected">选择功能</div>
+                        <ul class="options-item-select">
+                            {{#each native.vvlive.item}}
+                            <li class="options-item-option" data-type="{{this.type}}">{{this.name}}</li>
+                            {{/each}}
+                        </ul>
+                        <div class="options-item-select-arrow"></div>
+                    </div>
+                </div>
+                <div class="options-item-box clearfix mt10">
+                    <div class="options-item fl set-native-param" style="width: 194px;">
+                        <div class="options-item-input-desc">用户id：</div>
+                        <input type="text" class="options-item-input set-native-param-input" value="" placeholder="根据需要填写id" style="width: 134px;">
+                    </div>
+                </div>
+
+                <div class="options-item-title">链接</div>
+                <div class="options-item-box">
+                    <div class="options-item-link">
+                        <input type="text" class="options-item-link-input container-link-input" placeholder="请输入网页地址 如http://51vv.com" value="{{view.style.link}}">
+                    </div>
+                </div>
+                <div class="options-item-title-wrapper clearfix">
+                    <div class="options-item-title fl">圆角</div>
+                    <div class="options-item-title-desc container-border-radius-desc fr">{{view.style.borderRadius}}px</div>
+                </div>
+                <div class="options-item-box clearfix">
+                    <div class="options-range">
+                        <div class="options-range-drag container-border-radius">
+                            <div class="options-range-drag-icon"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="options-item-title-wrapper clearfix">
+                    <div class="options-item-title fl">透明度</div>
+                    <div class="options-item-title-desc container-opacity-desc fr">100%</div>
+                </div>
+                <div class="options-item-box clearfix">
+                    <div class="options-range">
+                        <div class="options-range-drag container-opacity" style="left:200px;">
+                            <div class="options-range-drag-icon"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="options-item-title">背景图片</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-bg-btn options-bg-btn-upload">上传<input type="file" class="container-bg-upload"></div>
+                    <div class="options-bg-btn options-bg-btn-gallery container-bg-gallery">图库</div>
+                    <div class="options-bg-btn options-bg-btn-mypic container-bg-mypic">我的图片</div>
+                </div>
+                <div class="options-item-box clearfix mt20">
+                    <div class="options-bg-label">背景对齐方式</div>
+                    <div class="options-item container-bg-position fl">
+                        <div class="options-item-selected container-bg-position-selected">{{notes.position.center}}</div>
+                        <ul class="options-item-select position-select container-bg-position-list">
+                            <li class="options-item-option" data-position="center">居中</li>
+                            <li class="options-item-option" data-position="top">居上</li>
+                            <li class="options-item-option" data-position="bottom">居下</li>
+                            <li class="options-item-option" data-position="left">居左</li>
+                            <li class="options-item-option" data-position="right">居右</li>
+                        </ul>
+                        <div class="options-item-select-arrow"></div>
+                    </div>
+                </div>
+                <div class="options-item-box clearfix mt20">
+                    <div class="options-bg-label">背景尺寸</div>
+                    <div class="options-item container-bg-size fl">
+                        <div class="options-item-selected container-bg-size-selected">{{view.style.backgroundSize}}</div>
+                        <ul class="options-item-select position-select container-bg-size-list">
+                            <li class="options-item-option" data-size="cover">cover</li>
+                            <li class="options-item-option" data-size="contain">contain</li>
+                        </ul>
+                        <div class="options-item-select-arrow"></div>
+                    </div>
+                </div>
+                <div class="options-bg-preview-wrapper mt20">
+                    <div class="options-bg-preview container-bg-preview" {{#if view.style.backgroundImage}}style="background-image: url({{view.style.backgroundImage}})"{{/if}}>
+                        <div class="options-bg-delbtn container-bg-delbtn"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 按钮配置 -->
+            <div class="aside-options-body aside-options-button" style="display:none;">
+                <div class="options-item-title options-item-title-first">文字</div>
+                <div class="options-item-box">
+                    <div class="options-item options-item-full">
+                        <input type="text" class="options-item-input options-item-input-full set-button-text" value="{{button.text}}">
+                    </div>
+                </div>
+                <div class="options-item-title">字体属性</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-item options-item-color set-button-fontColor fl" title="字体颜色">
+                        <div class="options-item-selected options-item-color-selected set-button-fontColorSelected">{{button.style.color}}</div>
+                        <div class="color-icon set-button-fontColorIcon" style="background-color:{{button.style.color}};"></div>
+                    </div>
+                    <div class="options-item item-font-size set-button-fontSize fl" title="字号">
+                        <div class="options-item-selected item-font-size-selected set-button-fontSize-selected">14px</div>
+                        <ul class="options-item-select button-font-size-select">
+                            <li class="options-item-option">12px</li>
+                            <li class="options-item-option">13px</li>
+                            <li class="options-item-option">14px</li>
+                            <li class="options-item-option">15px</li>
+                            <li class="options-item-option">16px</li>
+                            <li class="options-item-option">18px</li>
+                            <li class="options-item-option">20px</li>
+                            <li class="options-item-option">22px</li>
+                            <li class="options-item-option">24px</li>
+                            <li class="options-item-option">28px</li>
+                            <li class="options-item-option">30px</li>
+                            <li class="options-item-option">36px</li>
+                            <li class="options-item-option">48px</li>
+                        </ul>
+                        <div class="font-size-icon"></div>
+                        <div class="options-item-select-arrow"></div>
+                    </div>
+                </div>
+                <div class="options-item-title">按钮颜色</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-item options-item-color fl" id="button-bgColor">
+                        <div class="options-item-selected options-item-color-selected set-button-bgColorSelected">{{button.style.backgroundColor}}</div>
+                        <div class="color-icon set-button-bgColorIcon" style="background-color:{{button.style.backgroundColor}}"></div>
+                    </div>
+                </div>
+                <div class="options-item-title">按钮大小</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-item fl">
+                        <div class="options-item-input-desc">宽：</div>
+                        <input type="text" class="options-item-input set-button-width" data-key="width" value="{{button.style.width}}">
+                    </div>
+                    <div class="options-item fl ml10">
+                        <div class="options-item-input-desc">高：</div>
+                        <input type="text" class="options-item-input set-button-height" data-key="height" value="{{button.style.height}}">
+                    </div>
+                </div>
+                <div class="options-item-title-wrapper clearfix">
+                    <div class="options-item-title fl">边框</div>
+                </div>
+                <div class="options-item-box container-border-box clearfix">
+                    <div class="border-view fl">
+                        <div class="border-view-box"></div>
+                        <div class="border-view-line border-view-line-top" data-line="top"></div>
+                        <div class="border-view-line border-view-line-left" data-line="left"></div>
+                        <div class="border-view-line border-view-line-bottom" data-line="bottom"></div>
+                        <div class="border-view-line border-view-line-right" data-line="right"></div>
+                    </div>
+                    <div class="birder-options fl ml10">
+                        <div class="border-options-color">
+                            <div class="border-options-color-value set-button-borderColor">{{button.style.borderColor}}</div>
+                            <div class="border-color-icon set-button-borderColorIcon" style="background-color:{{button.style.borderColor}}"></div>
+                        </div>
+                        <div class="border-options-other clearfix">
+                            <div class="border-options-width"><input type="text" class="border-options-width-input set-border-width" value="{{button.style.borderWidth}}px"></div>
+                            <div class="border-options-type border-options-solid set-border-type set-border-type-solid current" data-type="solid" title="标准"></div>
+                            <div class="border-options-type border-options-dot set-border-type set-border-type-dotted" data-type="dotted" title="点线"></div>
+                            <div class="border-options-type border-options-dashed set-border-type set-border-type-dashed" data-type="dashed" title="虚线"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="options-item-title">层级</div>
+                <div class="options-item-box">
+                    <div class="options-item">
+                        <input type="text" class="options-item-input set-button-zIndex" value="{{button.style.zIndex}}">
+                        <div class="options-adjust-add set-button-zIndex-add"></div>
+                        <div class="options-adjust-reduce set-button-zIndex-reduce"></div>
+                    </div>
+                </div>
+                <!-- 绝对定位显示选项 -->
+                <div class="options-item-title">偏移</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-item fl">
+                        <div class="options-item-input-desc">上：</div>
+                        <input type="text" class="options-item-input set-button-top" data-key="top" value="{{button.style.top}}">
+                    </div>
+                    <div class="options-item fl ml10">
+                        <div class="options-item-input-desc">左：</div>
+                        <input type="text" class="options-item-input set-button-left" data-key="left" value="{{button.style.left}}">
+                    </div>
+                    <div class="options-item fl mt10">
+                        <div class="options-item-input-desc">下：</div>
+                        <input type="text" class="options-item-input set-button-bottom" data-key="bottom" value="{{button.style.bottom}}">
+                    </div>
+                    <div class="options-item fl ml10 mt10">
+                        <div class="options-item-input-desc">右：</div>
+                        <input type="text" class="options-item-input set-button-right" data-key="right" value="{{button.style.right}}">
+                    </div>
+                </div>
+                
+                <div class="options-item-title">扩展（链接客户端功能）</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-item set-native fl">
+                        <div class="options-item-selected set-native-selected">选择应用</div>
+                        <ul class="options-item-select">
+                            <li class="options-item-option" data-app="">选择应用</li>
+                            {{#each native}}
+                            <li class="options-item-option" data-app="{{this.type}}">{{this.name}}</li>
+                            {{/each}}
+                        </ul>
+                        <div class="options-item-select-arrow"></div>
+                    </div>
+                    <div class="options-item set-native-method fl ml10">
+                        <div class="options-item-selected set-native-method-selected">选择功能</div>
+                        <ul class="options-item-select">
+                            {{#each native.vvlive.item}}
+                            <li class="options-item-option" data-type="{{this.type}}">{{this.name}}</li>
+                            {{/each}}
+                        </ul>
+                        <div class="options-item-select-arrow"></div>
+                    </div>
+                </div>
+                <div class="options-item-box clearfix mt10">
+                    <div class="options-item fl set-native-param" style="width: 194px;">
+                        <div class="options-item-input-desc">用户id：</div>
+                        <input type="text" class="options-item-input set-native-param-input" value="" placeholder="根据需要填写id" style="width: 134px;">
+                    </div>
+                </div>
+
+                <div class="options-item-title">链接</div>
+                <div class="options-item-box">
+                    <div class="options-item-link">
+                        <input type="text" class="options-item-link-input set-button-link" placeholder="请输入网页地址 如http://51vv.com" value="{{button.link}}">
+                    </div>
+                </div>
+                <div class="options-item-title-wrapper clearfix">
+                    <div class="options-item-title fl">圆角</div>
+                    <div class="options-item-title-desc set-button-borderRadius-desc fr">{{button.style.borderRadius}}px</div>
+                </div>
+                <div class="options-item-box clearfix">
+                    <div class="options-range">
+                        <div class="options-range-drag set-button-borderRadius" style="left:200px;">
+                            <div class="options-range-drag-icon"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="options-item-title-wrapper clearfix">
+                    <div class="options-item-title fl">透明度</div>
+                    <div class="options-item-title-desc set-button-opacity-desc fr">100%</div>
+                </div>
+                <div class="options-item-box clearfix">
+                    <div class="options-range">
+                        <div class="options-range-drag set-button-opacity" style="left:200px;">
+                            <div class="options-range-drag-icon"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 图像配置 -->
+            <div class="aside-options-body aside-options-image" style="display:none;">
+                <div class="options-bg-preview-wrapper">
+                    <div class="options-bg-preview set-image-preview" {{#if image.src}}style="background-image: url({{image.src}})"{{/if}}>
+                        <!--<div class="options-bg-delbtn set-image-delbtn"></div>-->
+                    </div>
+                </div>
+                    <div class="options-item-box clearfix">
+                        <div class="options-bg-btn options-bg-btn-upload">上传<input type="file" class="replace-image-upload"></div>
+                        <div class="options-bg-btn options-bg-btn-gallery replace-image-gallery">图库</div>
+                        <div class="options-bg-btn options-bg-btn-mypic replace-image-mypic">我的图片</div>
+                    </div>
+                <div class="options-item-title">图像大小</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-item fl">
+                        <div class="options-item-input-desc">宽：</div>
+                        <input type="text" class="options-item-input set-image-width" data-key="width" value="{{image.style.width}}">
+                    </div>
+                    <div class="options-item fl ml10">
+                        <div class="options-item-input-desc">高：</div>
+                        <input type="text" class="options-item-input set-image-height" data-key="height" value="{{image.style.height}}">
+                    </div>
+                </div>
+                <div class="options-item-title">层级</div>
+                <div class="options-item-box">
+                    <div class="options-item">
+                        <input type="text" class="options-item-input set-image-zIndex" value="{{image.style.zIndex}}">
+                        <div class="options-adjust-add set-image-zIndex-add"></div>
+                        <div class="options-adjust-reduce set-image-zIndex-reduce"></div>
+                    </div>
+                </div>
+                <!-- 绝对定位显示选项 -->
+                <div class="options-item-title">偏移</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-item fl">
+                        <div class="options-item-input-desc">上：</div>
+                        <input type="text" class="options-item-input set-image-top" data-key="top" value="{{image.style.top}}">
+                    </div>
+                    <div class="options-item fl ml10">
+                        <div class="options-item-input-desc">左：</div>
+                        <input type="text" class="options-item-input set-image-left" data-key="left" value="{{image.style.left}}">
+                    </div>
+                    <div class="options-item fl mt10">
+                        <div class="options-item-input-desc">下：</div>
+                        <input type="text" class="options-item-input set-image-bottom" data-key="bottom" value="{{image.style.bottom}}">
+                    </div>
+                    <div class="options-item fl ml10 mt10">
+                        <div class="options-item-input-desc">右：</div>
+                        <input type="text" class="options-item-input set-image-right" data-key="right" value="{{image.style.right}}">
+                    </div>
+                </div>
+                
+                <div class="options-item-title">扩展（链接客户端功能）</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-item set-native fl">
+                        <div class="options-item-selected set-native-selected">选择应用</div>
+                        <ul class="options-item-select">
+                            <li class="options-item-option" data-app="">选择应用</li>
+                            {{#each native}}
+                            <li class="options-item-option" data-app="{{this.type}}">{{this.name}}</li>
+                            {{/each}}
+                        </ul>
+                        <div class="options-item-select-arrow"></div>
+                    </div>
+                    <div class="options-item set-native-method fl ml10">
+                        <div class="options-item-selected set-native-method-selected">选择功能</div>
+                        <ul class="options-item-select">
+                            {{#each native.vvlive.item}}
+                            <li class="options-item-option" data-type="{{this.type}}">{{this.name}}</li>
+                            {{/each}}
+                        </ul>
+                        <div class="options-item-select-arrow"></div>
+                    </div>
+                </div>
+                <div class="options-item-box clearfix mt10">
+                    <div class="options-item fl set-native-param" style="width: 194px;">
+                        <div class="options-item-input-desc">用户id：</div>
+                        <input type="text" class="options-item-input set-native-param-input" value="" placeholder="根据需要填写id" style="width: 134px;">
+                    </div>
+                </div>
+
+                <div class="options-item-title">链接</div>
+                <div class="options-item-box">
+                    <div class="options-item-link">
+                        <input type="text" class="options-item-link-input set-image-link" placeholder="请输入网页地址 如http://51vv.com" value="{{image.link}}">
+                    </div>
+                </div>
+                <div class="options-item-title-wrapper clearfix">
+                    <div class="options-item-title fl">圆角</div>
+                    <div class="options-item-title-desc set-image-borderRadius-desc fr">{{image.style.borderRadius}}px</div>
+                </div>
+                <div class="options-item-box clearfix">
+                    <div class="options-range">
+                        <div class="options-range-drag set-image-borderRadius">
+                            <div class="options-range-drag-icon"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="options-item-title-wrapper clearfix">
+                    <div class="options-item-title fl">透明度</div>
+                    <div class="options-item-title-desc set-image-opacity-desc fr">100%</div>
+                </div>
+                <div class="options-item-box clearfix">
+                    <div class="options-range">
+                        <div class="options-range-drag set-image-opacity" style="left:200px;">
+                            <div class="options-range-drag-icon"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 音频配置 -->
+            <div class="aside-options-body aside-options-audio" style="display:none;">
+                <div class="media-select-area set-audio-src">
+                    {{#if audio.src}}
+                    <div class="media-select-btn-txt set-audio-src-desc">{{audio.src}}</div>
+                    {{else}}
+                    <div class="media-select-btn-txt set-audio-src-desc">请选择歌曲</div>
+                    {{/if}}
+                    <div class="media-select-btn-icon"></div>
+                </div>
+                <div class="options-item-box mt30 clearfix">
+                    <div class="media-select-box">
+                        {{#if audio.image.play}}
+                        <div class="media-select-btn audio-select-btn-play">
+                            <div class="set-audio-playIcon"></div>
+                            <input type="file" class="set-audio-playIcon-input">
+                        </div>
+                        {{else}}
+                        <div class="media-select-btn default audio-select-btn-play" title="选择播放状态图">
+                            <div class="set-audio-playIcon"></div>
+                            <input type="file" class="set-audio-playIcon-input">
+                        </div>
+                        {{/if}}
+                        <div class="media-select-desc">播放状态图</div>
+                    </div>
+                    <div class="media-select-box media-select-box-pause">
+                        {{#if audio.image.pause}}
+                        <div class="media-select-btn audio-select-btn-pause">
+                            <div class="set-audio-pauseIcon"></div>
+                            <input type="file" class="set-audio-pauseIcon-input">
+                        </div>
+                        {{else}}
+                        <div class="media-select-btn default audio-select-btn-pause" title="选择暂停状态图">
+                            <div class="set-audio-pauseIcon"></div>
+                            <input type="file" class="set-audio-pauseIcon-input">
+                        </div>
+                        {{/if}}
+                        <div class="media-select-desc">暂停状态图</div>
+                    </div>
+                </div>
+                <div class="options-item-title">音频宽高</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-item fl">
+                        <div class="options-item-input-desc">宽：</div>
+                        <input type="text" class="options-item-input set-audio-width" data-key="width" value="{{audio.style.width}}">
+                    </div>
+                    <div class="options-item fl ml10">
+                        <div class="options-item-input-desc">高：</div>
+                        <input type="text" class="options-item-input set-audio-height" data-key="height" value="{{audio.style.height}}">
+                    </div>
+                </div>
+                <div class="options-item-title">层级</div>
+                <div class="options-item-box">
+                    <div class="options-item">
+                        <input type="text" class="options-item-input set-audio-zIndex" value="{{audio.style.zIndex}}">
+                        <div class="options-adjust-add set-audio-zIndex-add"></div>
+                        <div class="options-adjust-reduce set-audio-zIndex-reduce"></div>
+                    </div>
+                </div>
+                <!-- 绝对定位显示选项 -->
+                <div class="options-item-title">偏移</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-item fl">
+                        <div class="options-item-input-desc">上：</div>
+                        <input type="text" class="options-item-input set-audio-top" data-key="top" value="{{audio.style.top}}">
+                    </div>
+                    <div class="options-item fl ml10">
+                        <div class="options-item-input-desc">左：</div>
+                        <input type="text" class="options-item-input set-audio-left" data-key="left" value="{{audio.style.left}}">
+                    </div>
+                    <div class="options-item fl mt10">
+                        <div class="options-item-input-desc">下：</div>
+                        <input type="text" class="options-item-input set-audio-bottom" data-key="bottom" value="{{audio.style.bottom}}">
+                    </div>
+                    <div class="options-item fl ml10 mt10">
+                        <div class="options-item-input-desc">右：</div>
+                        <input type="text" class="options-item-input set-audio-right" data-key="right" value="{{audio.style.right}}">
+                    </div>
+                </div>
+            </div>
+            <!-- 视频配置 -->
+            <div class="aside-options-body aside-options-video" style="display:none;">
+                <div class="media-select-area set-video-src">
+                    {{#if video.src}}
+                    <div class="media-select-btn-txt set-video-src-desc">{{video.src}}</div>
+                    {{else}}
+                    <div class="media-select-btn-txt set-video-src-desc">请选择视频</div>
+                    {{/if}}
+                    <div class="media-select-btn-icon"></div>
+                </div>
+                <div class="options-item-box mt30 clearfix">
+                    <div class="media-select-box">
+                        {{#if video.poster}}
+                        <div class="media-select-btn video-select-btn-play">
+                            <div class="set-video-poster"></div>
+                            <input type="file" class="set-video-poster-input">
+                        </div>
+                        {{else}}
+                        <div class="media-select-btn default video-select-btn-play">
+                            <div class="set-video-poster"></div>
+                            <input type="file" class="set-video-poster-input">
+                        </div>
+                        {{/if}}
+                        <div class="media-select-desc">视频默认图</div>
+                    </div>
+                </div>
+                <div class="options-item-title">视频宽高</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-item fl">
+                        <div class="options-item-input-desc">宽：</div>
+                        <input type="text" class="options-item-input set-video-width" data-key="width" value="{{video.style.width}}">
+                    </div>
+                    <div class="options-item fl ml10">
+                        <div class="options-item-input-desc">高：</div>
+                        <input type="text" class="options-item-input set-video-height" data-key="height" value="{{video.style.height}}">
+                    </div>
+                </div>
+                <div class="options-item-title">层级</div>
+                <div class="options-item-box">
+                    <div class="options-item">
+                        <input type="text" class="options-item-input set-video-zIndex" value="{{video.style.zIndex}}">
+                        <div class="options-adjust-add set-video-zIndex-add"></div>
+                        <div class="options-adjust-reduce set-video-zIndex-reduce"></div>
+                    </div>
+                </div>
+                <!-- 绝对定位显示选项 -->
+                <div class="options-item-title">偏移</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-item fl">
+                        <div class="options-item-input-desc">上：</div>
+                        <input type="text" class="options-item-input set-video-top" data-key="top" value="{{video.style.top}}">
+                    </div>
+                    <div class="options-item fl ml10">
+                        <div class="options-item-input-desc">左：</div>
+                        <input type="text" class="options-item-input set-video-left" data-key="left" value="{{video.style.left}}">
+                    </div>
+                    <div class="options-item fl mt10">
+                        <div class="options-item-input-desc">下：</div>
+                        <input type="text" class="options-item-input set-video-bottom" data-key="bottom" value="{{video.style.bottom}}">
+                    </div>
+                    <div class="options-item fl ml10 mt10">
+                        <div class="options-item-input-desc">右：</div>
+                        <input type="text" class="options-item-input set-video-right" data-key="right" value="{{video.style.right}}">
+                    </div>
+                </div>
+            </div>
+            <!-- 页面配置 -->
+            <div class="aside-options-body aside-options-page">
+                <div class="options-item-title options-item-title-first">页面背景</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-item options-item-color set-body-bgcolor fl">
+                        <div class="options-item-selected options-item-color-selected set-body-bgcolor-selected">{{preview.backgroundColor}}</div>
+                        <div class="color-icon set-body-bgcolor-icon" style="background-color:{{preview.backgroundColor}}"></div>
+                    </div>
+                </div>
+                <div class="options-item-title">页面高度</div>
+                <div class="options-item-box clearfix">
+                    <div class="options-item fl">
+                        <div class="options-item-input-desc">高：</div>
+                        {{#if fullScreen}}
+                        <input type="text" class="options-item-input set-body-height" value="504">
+                        {{else}}
+                        <input type="text" class="options-item-input set-body-height" value="{{preview.height}}">
+                        {{/if}}
+                    </div>
+                    <div class="options-item-check set-body-fullScreen {{#if fullScreen}}checked{{/if}} fl">
+                        <div class="options-item-checkbox"></div>
+                        <div class="options-item-txt">满屏显示</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

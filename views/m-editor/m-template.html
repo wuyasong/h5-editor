@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="VV,视频,娱乐社区,视频聊天室">
+    <meta name="description" content="VV娱乐社区是多人在线视频聊天室交友网站">
+    <title><%= title %></title>
+    <style>
+        html{-webkit-text-size-adjust:none; -webkit-tap-highlight-color: transparent;overflow-x: hidden; height: 100%; font-size: 312.5%;background-color:#fff; font-family: Helvetica;}
+        body{color:#333;font-size:.28em;line-height:1.5;max-width:640px;position:relative;}
+        body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0;}
+        table{border-collapse:collapse;border-spacing:0}
+        img {vertical-align:middle;border:0}
+        h1,h2,h3,h4,h5,h6{font-weight:normal;}
+        ul,ol,li{list-style:none;}
+        em,i{font-style:normal}
+        img{border:none}
+        input,img{vertical-align:middle}
+        textarea:focus{outline:0}
+        input,textarea,button{ outline: 0; border: none;}
+        a{color:#333;text-decoration:none;outline:0}
+        a:active,a:hover,a.current{outline:0}
+        input, button, select, textarea {line-height:1;letter-spacing: normal;word-spacing: normal;text-transform: none;text-indent:0;text-shadow: none; vertical-align:middle}
+        button, input, optgroup, select, textarea {color:inherit;margin:0;-webkit-writing-mode: horizontal-tb;}
+        button, html input[type=button], input[type=reset], input[type=submit] {-webkit-appearance:button;cursor:pointer}
+        article, aside, footer, header, hgroup, nav, section {display: block;}
+        @media screen and (min-width:350px){html{font-size:342%;}}
+        @media screen and (min-width:360px){html{font-size:351.5625%;}}
+        @media screen and (min-width:375px){html{font-size:366.2%;}}
+        @media screen and (min-width:384px){html{font-size:375%;}}
+        @media screen and (min-width:390px){html{font-size:380.859%;}}
+        @media screen and (min-width:410px){html{font-size:400%;}}
+        @media screen and (min-width:432px){html{font-size:421.875%;}}
+        @media screen and (min-width:480px){html{font-size:469%;}}
+        @media screen and (min-width:540px){html{font-size:527.34%;}}
+        @media screen and (min-width:640px){html{font-size: 625%;}}
+        .maskTip{display: none; position: fixed; left: 0; top: 0; z-index: 10000; background-color: rgba(0,0,0,0.8); width: 100%; height: 100%;}
+        .maskTip img{width: 100%;}
+        .likebox {position: fixed; bottom: .4rem;right: .4rem;z-index: 200; }
+        .likeBtn{ float: left; width: .4rem; height: .4rem; font-size: .3rem; background: url(/images/icon_like.png) no-repeat center; background-size: auto .33rem; margin-right: .1rem;}
+        .likeNum{ float: left; color: #fff; line-height: .4rem; font-size: .3rem;}
+        .likeBtn.animate{ -webkit-animation: zoomin 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); animation: zoomin 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);}
+        @-webkit-keyframes zoomin{
+            0%{ -webkit-transform: scale(1,1)}
+            30%{ -webkit-transform: scale(1.2,1.2)}
+            60%{ -webkit-transform: scale(1.8,1.8)}
+            100%{ -webkit-transform: scale(1,1)}
+        }
+        @keyframes zoomin{
+            0%{ -webkit-transform: scale(1,1)}
+            30%{ -webkit-transform: scale(1.2,1.2)}
+            60%{ -webkit-transform: scale(1.8,1.8)}
+            100%{ -webkit-transform: scale(1,1)}
+        }
+    </style>
+    <style>
+        <% var bodyStyle = '' %>
+        <% for (var key in body) { %>
+            <% bodyStyle += key.replace(/([A-Z])/g,"-$1").toLowerCase() + ':' + body[key] + ';' %>
+        <% } %>
+        body{<%= bodyStyle %>margin-left:auto;margin-right:auto;}
+        .med_text_container{ font-size: .28rem; line-height: 110%;}
+        .med_view{ width: 100%; height: 100%; display: block;}
+        .med_image_link{ display: block; width: 100%; height: 100%;}
+        .med_image{ display: block; width: 100%; height: 100%;}
+        .med_audio{ display: none;}
+        .med_audio_bg{ width: 100%; height: 100%; background-size: cover; background-position: center center; background-repeat: no-repeat;}
+        .med_video{ width: 100%; display: none;}
+        .med_video_poster{ position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 2; -webkit-background-size: cover; background-size: cover; background-position: center center; background-repeat: no-repeat;}
+        <% for (var key in elements) { %>
+            <% if (elements[key].type === 'text') { %>
+                /* text */
+                <% var currStyle = '' %>
+                <% for (var style in elements[key].style) { %>
+                    <% currStyle += style.replace(/([A-Z])/g,"-$1").toLowerCase() + ':' + elements[key].style[style] + ';' %>
+                <% } %>
+                .<%= elements[key].id %>{<%= currStyle %>}
+            <% } else if (elements[key].type === 'view') { %>
+                /* view */
+                <% var currStyle = '' %>
+                <% for (var style in elements[key].style) { %>
+                    <% currStyle += style.replace(/([A-Z])/g,"-$1").toLowerCase() + ':' + elements[key].style[style] + ';' %>
+                <% } %>
+                .<%= elements[key].id %>{<%= currStyle %>}
+            <% } else if (elements[key].type === 'button') { %>
+                /* button */
+                <% var currStyle = '' %>
+                <% for (var style in elements[key].style) { %>
+                    <% currStyle += style.replace(/([A-Z])/g,"-$1").toLowerCase() + ':' + elements[key].style[style] + ';' %>
+                <% } %>
+                .<%= elements[key].id %>{<%= currStyle %>}
+            <% } else if (elements[key].type === 'image') { %>
+                /* image */
+                <% var currStyle = '' %>
+                <% for (var style in elements[key].style) { %>
+                    <% currStyle += style.replace(/([A-Z])/g,"-$1").toLowerCase() + ':' + elements[key].style[style] + ';' %>
+                <% } %>
+                .<%= elements[key].id %>{<%= currStyle %>}
+            <% } else if (elements[key].type === 'audio') { %>
+                /* audio */
+                <% var currStyle = '' %>
+                <% for (var style in elements[key].style) { %>
+                    <% currStyle += style.replace(/([A-Z])/g,"-$1").toLowerCase() + ':' + elements[key].style[style] + ';' %>
+                <% } %>
+                .<%= elements[key].id %>{<%= currStyle %>}
+            <% } else if (elements[key].type === 'video') { %>
+                /* video */
+                <% var currStyle = '' %>
+                <% for (var style in elements[key].style) { %>
+                    <% currStyle += style.replace(/([A-Z])/g,"-$1").toLowerCase() + ':' + elements[key].style[style] + ';' %>
+                <% } %>
+                .<%= elements[key].id %>{<%= currStyle %>}
+            <% } %>
+        <% } %>
+    </style>
+</head>
+<body>
+    <% for (var key in elements) { %>
+        <% if (elements[key].type === 'text') { %>
+            <!-- text -->
+            <div class="med_container med_text_container <%= elements[key].id %>">
+                <%- elements[key].text %>
+            </div>
+        <% } else if (elements[key].type === 'view') { %>
+            <!-- view -->
+            <div class="med_container med_view_container <%= elements[key].id %>">
+                <% if (elements[key].link) { %>
+                    <!-- 有链接 -->
+                    <a class="med_view" href="<%= elements[key].link %>"></a>
+                <% } else { %>
+                    <!-- 无链接 -->
+                    <div class="med_view"></div>
+                <% } %>
+            </div>
+        <% } else if (elements[key].type === 'button') { %>
+            <!-- button -->
+            <div class="med_container med_button_container <%= elements[key].id %>">
+                <% if (elements[key].link) { %>
+                    <!-- 有链接 -->
+                    <a class="med_button" href="<%= elements[key].link %>"><%= elements[key].text %></a>
+                <% } else { %>
+                    <!-- 无链接 -->
+                    <div class="med_button"><%= elements[key].text %></div>
+                <% } %>
+            </div>
+        <% } else if (elements[key].type === 'image') { %>
+            <!-- image -->
+            <div class="med_container med_image_container <%= elements[key].id %>">
+                <% if (elements[key].link) { %>
+                    <!-- 有链接 -->
+                    <a class="med_image_link <%= elements[key].id %>_link" href="<%= elements[key].link %>">
+                        <img class="med_image" src="<%= elements[key].src %>">
+                    </a>
+                <% } else { %>
+                    <!-- 无链接 -->
+                    <img class="med_image" src="<%= elements[key].src %>">
+                <% } %>
+            </div>
+        <% } else if (elements[key].type === 'audio') { %>
+            <!-- audio -->
+            <div class="med_container med_audio_container <%= elements[key].id %>">
+                <audio src="<%= elements[key].src %>" class="med_audio"></audio>
+                <% if (elements[key].image.pause) { %>
+                    <div class="med_audio_bg" style="background-image: url(<%= elements[key].image.pause %>)" data-play="<%= elements[key].image.play %>" data-pause="<%= elements[key].image.pause %>"></div>
+                <% } else { %>
+                    <div class="med_audio_bg" style="background-color: #333;" data-play="" data-pause=""></div>
+                <% } %>
+            </div>
+        <% } else if (elements[key].type === 'video') { %>
+            <!-- video -->
+            <div class="med_container med_video_container <%= elements[key].id %>">
+                <video src="<%= elements[key].src %>" controls class="med_video"></video>
+                <% if (elements[key].poster) { %>
+                    <div class="med_video_poster" style="background-image: url(<%= elements[key].poster %>)"></div>
+                <% } else { %>
+                    <div class="med_video_poster" style="background-color: #333;"></div>
+                <% } %>
+            </div>
+        <% } %>
+    <% } %>
+    <div class="maskTip">
+        <img src="/images/yindao.png" />
+    </div>
+    <script src="/app/zepto.min.js"></script>
+    <script src="/app/vvlive_common_talk.js"></script>
+    <script src="/app/yb.proxy.js"></script>
+	<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="//qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js"></script>
+    <% if (setOptions && setOptions.isOpenLikes) { %>
+    <div class="likebox" id="likebox">
+        <div class="likeBtn"></div>
+        <div class="likeNum"><%= likesCount %></div>
+    </div>
+    <script>
+    // 点赞操作
+    $('#likebox').unbind('click').bind('click', function() {
+        var likeNum = $('.likeNum').html(),
+            newLikeNum = parseInt(likeNum + 1);
+
+        $.ajax({
+            type: 'GET',
+            url: '/m/toPraise?id=<%= sessionId %>',
+            success: function(data){
+                var json = JSON.parse(data);
+                $('.likeNum').html(json.count);
+                $('.likeBtn').addClass('animate');
+                setTimeout(function() {
+                    $('.likeBtn').removeClass('animate');
+                }, 400);
+                $('#likebox').unbind('click');
+            }
+        });
+    });
+    </script>
+    <% } %>
+    <% if (setOptions && setOptions.isOpenCmt) { %>
+    <link rel="stylesheet" href="/style/vvComment.css">
+	<div id="vvCommentM" style="padding-top: <%= body.height %>;"></div>
+	<script src="/app/hits.js"></script>
+	<script src="/app/vvComment-m.js"></script>
+	<script src="/app/vvCommentNoinit.js"></script>   
+    <script>
+        //评论
+		$(function(){
+			vvCommentM.init();
+            hitsObj.getHits($('#hitsVVM'));
+		});
+    </script>
+    <% } %>
+    <script>
+        var ua = navigator.userAgent,
+            isWechat = (/micromessenger/gi).test(ua), 
+            isWeibo = (/weibo/gi).test(ua),
+            isQQ = (/qq/gi).test(ua) && (!(/qqbrowser/gi).test(ua)),
+            isAndroid = (/android/gi).test(ua),
+            isIOS = (/iphone|ipad|ipod/gi).test(ua),
+            isvvlive = (/vvlive/gi).test(ua),
+            isVVmusic = (/vvmusic/gi).test(ua);
+        // 通讯客户端操作
+        var client_collect = [
+        <% for (var key in elements) { %>
+            <% if (elements[key].native) { %>
+                <% if (elements[key].native.name) { %>
+                    {
+                        name: '<%= elements[key].native.name %>',
+                        method: '<%= elements[key].native.method %>',
+                        id: '<%= elements[key].native.id %>',
+                        className: '.<%= elements[key].id %>'
+                    },
+                <% } %>
+            <% } %>
+        <% } %>
+        ];
+    </script>
+    <script>
+        // 分享信息自定义
+        (function(){
+            var shareInfo = {
+                title: '<%= title %>',
+                desc: '<%= desc %>',
+                link: location.href.split('#')[0],
+                imgUrl: 'http://ppt.51vv.com' + '<%= imgUrl %>'
+            };
+            if ('wx' in window) {
+                wx.config({
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: '<%= sign.appid %>', // 必填，公众号的唯一标识
+                    timestamp: '<%= sign.timestamp %>', // 必填，生成签名的时间戳
+                    nonceStr: '<%= sign.nonceStr %>', // 必填，生成签名的随机串
+                    signature: '<%= sign.signature %>',// 必填，签名，见附录1
+                    jsApiList: [
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'onMenuShareQQ',
+                        'onMenuShareWeibo',
+                        'onMenuShareQZone'
+                    ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+                wx.ready(function(){
+                    wx.showOptionMenu();
+                    // 获取“分享给朋友”按钮点击状态及自定义分享内容接口
+                    wx.onMenuShareAppMessage(shareInfo);
+                    // 获取“分享到朋友圈”按钮点击状态及自定义分享内容接口
+                    wx.onMenuShareTimeline(shareInfo);
+                    wx.onMenuShareQQ(shareInfo);
+                    wx.onMenuShareWeibo(shareInfo);
+                    wx.onMenuShareQZone(shareInfo);
+                });
+            }
+            /**
+             * 定制接口
+             * @param opts 定制内容
+             */
+            if (isQQ) {
+                setShareInfo({
+                    title: shareInfo.title, // 分享标题
+                    summary: shareInfo.desc, // 分享内容
+                    pic: shareInfo.imgUrl, // 分享图片
+                    url: shareInfo.link, // 分享链接
+                    // 微信权限验证配置信息，若不在微信传播，可忽略
+                    WXconfig: {
+                        swapTitleInWX: true, // 是否标题内容互换（仅朋友圈，因朋友圈内只显示标题）
+                        appId: '<%= sign.appid %>', // 公众号的唯一标识
+                        timestamp: '<%= sign.timestamp %>', // 生成签名的时间戳
+                        nonceStr: '<%= sign.nonceStr %>', // 生成签名的随机串
+                        signature: '<%= sign.signature %>' // 签名
+                    }
+                });
+            }
+        })();
+        // 音视频操作 
+        (function(){
+            $('.med_video_poster').bind('click', function(){
+                var video = $(this).siblings('video').get(0);
+                if (video.paused) {
+                    $(this).hide();
+                    $(this).siblings('video').show().get(0).play();
+                    video.play();
+                } else {
+                    $(this).siblings('video').get(0).pause();
+                }
+            });
+
+            $('.med_audio_bg').bind('click', function(){
+                var audio = $(this).siblings('audio').get(0);
+                var playImg = $(this).attr('data-play');
+                var pauseImg = $(this).attr('data-pause');
+                if (audio.paused) {
+                    // 其他为暂停图标
+                    $.each($('.med_audio_bg'), function (i, audioBg) {
+                        $(audioBg).css('background-image', 'url(' + $(audioBg).attr('data-pause') + ')');
+                    });
+                    // $('.med_audio_bg').css('background-image', 'url(' + pauseImg + ')');
+                    // 当前为播放图标
+                    $(this).css('background-image', 'url(' + playImg + ')');
+                    // 其他音频暂停
+                    $.each($(this).parent().siblings('.med_audio_container').find('audio'), function (i, audio) {
+                        audio.pause();
+                    });
+                    // 当前音频播放
+                    audio.play();
+                } else {
+                    $(this).css('background-image', 'url(' + pauseImg + ')');
+                    audio.pause();
+                }
+            });
+        })();
+        // 通讯客户端操作
+        (function(){
+            $.each(client_collect, function(i, options){
+                if (options.name === 'vvlive') {
+                    switch (options.method) {
+                        case 'toShare':
+                            $(options.className).on('click', function(){ vvlive_share(); });
+                            break;
+                        case 'toLivePage':
+                            $(options.className).on('click', function(){ vvlive_toLivePage(options.id); });
+                            break;
+                        case 'toSpace':
+                            $(options.className).on('click', function(){ vvlive_toSpace(options.id); });
+                            break;
+                        case 'toDownload':
+                            $(options.className).on('click', function(){ vvlive_share(); });
+                            break;
+                        // case 'toAtten':
+                        //     $(options.className).on('click', function(){ vvlive_toAtten(options.id); });
+                        //     break;
+                    }
+                }
+                else if (options.name === 'vvmusic') {
+                    switch (options.method) {
+                        case 'toUserZone':
+                            $(options.className).on('click', function(){ vvmusic_gotoUserZone(options.id); });
+                            break;
+                        case 'toUserPlayerMV':
+                            $(options.className).on('click', function(){ vvmusic_gotoUserPlayer(1, options.id); });
+                            break;
+                        case 'toUserPlayerSong':
+                            $(options.className).on('click', function(){ vvmusic_gotoUserPlayer(0, options.id); });
+                            break;
+                        case 'toDownload':
+                            $(options.className).on('click', function(){ vvmusic_download(); });
+                            break;
+                    }
+                }
+            });
+        })();
+        function vvlive_share(){
+            if(isvvlive){
+                vvliveBridgeObj.notifyShareInfo(document.title,'本服务由VV娱乐社区提供','');
+                vvliveBridgeObj.openSharePage('本服务由VV娱乐社区提供',document.title);
+            } else {
+				var startTime = new Date();
+                $(".maskTip").on('click', function () {
+                    $(".maskTip").css('display', 'none');
+                })
+				// IOS
+				if(isIOS){
+					if(isWechat || isWeibo || isQQ){
+						$(".maskTip").css("display","block");
+					}else{
+						var d = navigator.userAgent.toLowerCase();
+						if (d.indexOf("os 9") > 0) {
+							window.location.href = 'vvlive://vvlive.cn/app';
+						}
+						var iframe1 = document.createElement('iframe');
+						iframe1.src = 'vvlive://vvlive.cn/app';
+						iframe1.style.display = 'none';
+						document.body.appendChild(iframe1);
+						setTimeout(function(){
+							if(+new Date()-startTime < 4000){
+								// 跳转到AppStore下载
+								window.location.href = "https://itunes.apple.com/us/app/id1119086460";
+							}
+						},2000);
+					}
+				} else {	
+					if(isWechat || isQQ){
+						$(".maskTip").css("display","block");
+						return;
+					}
+					var iframe1 = document.createElement('iframe');
+					// 回放状态3  跳转APP回放状态 type传1;直播和直播结束状态都传0
+					iframe1.src = 'vvlive://vvlive.cn/app';
+					iframe1.style.display = 'none';
+					document.body.appendChild(iframe1);
+					setTimeout(function(){
+						if(+new Date()-startTime < 4000){
+							window.location.href = "http://down.vvlive.ubeibei.cn/setup/vvlive_setup.apk";
+						}
+					},2000)
+				}
+            }
+        }
+        function vvlive_toLivePage(id){
+            if(isvvlive){
+                vvliveBridgeObj.enterLiveRoom(id);
+            }
+        }
+        function vvlive_toSpace(id){
+            if(isvvlive){
+                vvliveBridgeObj.openUserHomePage(id);
+            }
+        }
+        function vvmusic_gotoUserZone(id){
+            if (isVVmusic) {
+                new yb.proxy({
+                    type: 'custom',  
+                    url: 'vvmusicweb://gotoUserZone?userId=' + id + '&userName='
+                });
+            }
+        }
+        function vvmusic_gotoUserPlayer(mediaType, id){
+            yb.proxy.gotoUserPlayer(id, mediaType);
+        }
+        function vvmusic_download(){
+            var starttime = +new Date();
+            //微信内 安卓跳应用宝 苹果弹引导层 其他跳应用宝
+            if (isWechat) {
+                if (isAndroid) {
+                    window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.vv51.mvbox';
+                } else if (isIOS) {
+                    $('.maskTip').style.display = 'block';
+                } else {
+                    window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.vv51.mvbox';
+                }
+            }
+            //非微信 安卓安装则打开 为安卓则去下载 苹果安装则打开 为苹果则去下载 其他都去下载
+            else {
+                if (isAndroid) {
+                    var iframe = document.createElement('iframe');
+                    iframe.src = 'http://127.0.0.1:9561?use=2';
+                    iframe.style.display = 'none';
+                    document.body.appendChild(iframe);
+                    setTimeout(function() {
+                        if (+new Date() - starttime < 5000) {
+                            window.location.href = "http://www.51vv.com/vvmusic/downloadSwipe.html";
+                        }
+                    }, 2000);
+                } else if (isIOS) {
+                    if (isQQ) {
+                        window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.vv51.mvbox';
+                        return;
+                    } else if (isWeibo) {
+                        $('.maskTip').style.display = 'block';
+                        return;
+                    }
+                    var iframe = document.createElement('iframe');
+                    iframe.src = 'vvmusic://';
+                    iframe.style.display = 'none';
+                    document.body.appendChild(iframe);
+                    setTimeout(function() {
+                        if (+new Date() - starttime < 5000) {
+                            window.location.href = "http://www.51vv.com/vvmusic/downloadSwipe.html";
+                        }
+                    }, 2000);
+                } else {
+                    window.location.href = "http://www.51vv.com/vvmusic/downloadSwipe.html";
+                }
+            }
+        }
+    </script>
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?96128d338828f3e2f5054ac83ec8a959";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+</body>
+</html>

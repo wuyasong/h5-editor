@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title><%= title %></title>
+	<link rel="stylesheet" href="/style/base.css">
+	<link rel="stylesheet" href="/style/slideTop.css">
+	<link rel="stylesheet" href="/style/h5-animate.css">
+	<style>
+	<%= styles %>
+	</style>
+</head>
+<body>
+    <% if (shareImage != '') { %>
+        <div class="shareImage"><img src="<%= shareImage %>"></div>
+    <% } %>
+    <!-- 满屏容器 -->
+	<section class="contain" id="contain">
+        <!-- 滑动容器 -->
+		<div class="wrapper" id="wrapper">
+			<!-- 遍历页对象 -->
+			<% objects.forEach(function(object, index){ %>
+				<div class="screen" id="<%= object.id %>">
+					<!-- 遍历UI元素对象 -->
+					<% object.elems.forEach(function(elem){ %>
+						<% if (elem.type == 'font') { %>
+							<div id="<%= elem.id %>" class="font_item" data-animationType="<%= elem.animationType %>" data-animated="<%= elem.animate %>"><%= elem.text %></div>
+						<% } else if (elem.type == 'image') { %>
+							<a id="<%= elem.id %>" class="image_item" href="<% if (elem.link) { %><%= elem.link %><% } else { %>javascript:;<% } %>" data-animationType="<%= elem.animationType %>" data-animated="<%= elem.animate %>" data-audio="<% if (elem.audio) { %><% if (elem.audio.src) { %>[<%= elem.audio.src %>,<%= elem.audio.playbtn %>,<%= elem.audio.pausebtn %>]<% } %><% } %>">
+								<img src="<%= elem.src %>">
+							</a>
+						<% } else if (elem.type == 'button') { %>
+							<a id="<%= elem.id %>" class="button_item" href="<%= elem.link %>"  data-animationType="<%= elem.animationType %>" data-animated="<%= elem.animate %>"><%= elem.text %></a>
+						<% } %>
+					<% }) %>
+					<% if (objects.length - 1 == index) { %>
+					<div class="readCount">阅读次数（<%= readCount %>）</div>
+					<% } %>
+				</div>
+			<% }) %>
+			
+		</div>
+		<!-- 背景音乐 || 音频列表 -->
+		<% if (music || audioList) { %>
+		<div class="musicIcon songplay" data-playIndex="0"><audio id="audio" src="" autoplay></audio></div>
+		<% } %>
+		<!-- 导览箭头 -->
+		<div class="arrow"></div>
+		<!-- 页码 -->
+		<div class="page-num">
+			<span id='curPage'>1</span>/<span id="allPage"><%= page %></span>
+		</div>
+		<div class="box">
+			<% if (isComment !== '0') { %>
+			<!-- 评论 -->
+			<div class="comment-btn-box">
+				<a href="javascript:;" id="commentMBtn">0</a>
+			</div>
+			<% } %>
+			<% if (isLike !== '0') { %>
+			<!-- 点赞 -->
+			<div class="likebox" id="likebox">
+				<div class="likeBtn"></div>
+				<div class="likeNum"><%= likeCount %></div>
+			</div>
+			<% } %>
+		</div>
+	</section>
+	
+	<script>
+	var options = {
+		sessionid: '<%= sessionid %>',
+		title: '<%= title %>',   // 标题
+		page: <%= page %>,   // 页数
+		readCount: <%= readCount %>,  // 阅读次数
+		likeCount: <%= likeCount %>,   // 点赞次数
+		audioList: '<%- audioList %>',
+		bgSong: '<%= music %>'
+	};
+	</script>
+	<script src="/app/zepto.min.js"></script>
+	<script src="/app/mAnimation.js"></script>
+	<script src="/app/index.js"></script>
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?96128d338828f3e2f5054ac83ec8a959";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+</body>
+</html>

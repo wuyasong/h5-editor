@@ -1,0 +1,62 @@
+<% var bodyStyle = '' %>
+<% for (var key in body) { %>
+    <% bodyStyle += key.replace(/([A-Z])/g,"-$1").toLowerCase() + ':' + body[key] + ';' %>
+<% } %>
+body{<%= bodyStyle %>margin-left:auto;margin-right:auto;}
+.med_text_container{ font-size: .28rem; line-height: 110%;}
+.med_view_container .med_view{}
+.med_view{ width: 100%; height: 100%; display: block;}
+.med_image_container{}
+.med_image_link{ display: block; width: 100%; height: 100%;}
+.med_image{ display: block; width: 100%; height: 100%;}
+.med_audio_container{}
+.med_audio{ display: none;}
+.med_audio_bg{ width: 100%; height: 100%; background-size: cover; background-position: center center; background-repeat: no-repeat;}
+.med_video_container{}
+.med_video{ width: 100%; display: none;}
+.med_video_poster{ position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 2; -webkit-background-size: cover; background-size: cover; background-position: center center; background-repeat: no-repeat;}
+<% for (var key in elements) { %>
+    <% if (elements[key].type === 'text') { %>
+        /* text */
+        <% var currStyle = '' %>
+        <% for (var style in elements[key].style) { %>
+            <% currStyle += style.replace(/([A-Z])/g,"-$1").toLowerCase() + ':' + elements[key].style[style] + ';' %>
+        <% } %>
+        .<%= elements[key].id %>{<%= currStyle %>}
+    <% } else if (elements[key].type === 'view') { %>
+        /* view */
+        <% var currStyle = '' %>
+        <% for (var style in elements[key].style) { %>
+            <% currStyle += style.replace(/([A-Z])/g,"-$1").toLowerCase() + ':' + elements[key].style[style] + ';' %>
+        <% } %>
+        .<%= elements[key].id %>{<%= currStyle %>}
+    <% } else if (elements[key].type === 'button') { %>
+        /* button */
+        <% var currStyle = '' %>
+        <% for (var style in elements[key].style) { %>
+            <% currStyle += style.replace(/([A-Z])/g,"-$1").toLowerCase() + ':' + elements[key].style[style] + ';' %>
+        <% } %>
+        .<%= elements[key].id %>{<%= currStyle %>}
+    <% } else if (elements[key].type === 'image') { %>
+        /* image */
+        <% var currStyle = '' %>
+        <% for (var style in elements[key].style) { %>
+            <% currStyle += style.replace(/([A-Z])/g,"-$1").toLowerCase() + ':' + elements[key].style[style] + ';' %>
+        <% } %>
+        .<%= elements[key].id %>{<%= currStyle %>}
+    <% } else if (elements[key].type === 'audio') { %>
+        /* audio */
+        <% var currStyle = '' %>
+        <% for (var style in elements[key].style) { %>
+            <% currStyle += style.replace(/([A-Z])/g,"-$1").toLowerCase() + ':' + elements[key].style[style] + ';' %>
+        <% } %>
+        .<%= elements[key].id %>{<%= currStyle %>}
+    <% } else if (elements[key].type === 'video') { %>
+        /* video */
+        <% var currStyle = '' %>
+        <% for (var style in elements[key].style) { %>
+            <% currStyle += style.replace(/([A-Z])/g,"-$1").toLowerCase() + ':' + elements[key].style[style] + ';' %>
+        <% } %>
+        .<%= elements[key].id %>{<%= currStyle %>}
+    <% } %>
+<% } %>

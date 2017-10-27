@@ -1,0 +1,12 @@
+<!-- 图库弹层 -->
+<div class="window-menu gallery-menu">
+    <div class="window-menu-title gallery-menu-title">{{title}}</div>
+    <div class="window-menu-closebtn gallery-menu-closebtn"></div>
+</div>
+<div class="gallery-body">
+    <ul class="gallery-list clearfix">
+        {{#gallery}}
+        <li class="gallery-item" style="background-image:url({{src}})" data-src="{{src}}" data-width="{{width}}" data-height="{{height}}"></li>
+        {{/gallery}}
+    </ul>
+</div>

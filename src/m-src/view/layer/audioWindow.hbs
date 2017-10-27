@@ -1,0 +1,29 @@
+<!-- 选择音频弹层 -->
+<div class="window-menu audio-menu">
+    <div class="window-menu-title audio-menu-title">音频选择</div>
+    <div class="window-menu-closebtn audio-menu-closebtn"></div>
+</div>
+<div class="audio-body">
+    <div class="audio-select-wrapper">
+        <div class="audio-select-line clearfix">
+            <div class="media-window-select-box set-audio-selectedType fl">
+                <div class="media-selected audio-selected">音频链接</div>
+                <div class="media-select-icon"></div>
+            </div>
+            <ul class="media-select-list audio-select-list">
+                <li>用户作品</li>
+                <li>曲库歌曲</li>
+                <li>音频链接</li>
+            </ul>
+            <div class="media-input-wrapper fl">
+                <input type="text" class="media-input set-audio-url-input" data-type="3" placeholder="输入音频链接">
+            </div>
+            <div class="media-search set-audio-search fl"></div>
+        </div>
+        <div class="audio-select-line mt30">
+            <div class="audio-name">{{info}}</div>
+        </div>
+    </div>
+    <div class="audio-btn audio-ok-btn" data-src="{{src}}">使用音频</div>
+    <div class="audio-btn audio-cancel-btn">取消</div>
+</div>

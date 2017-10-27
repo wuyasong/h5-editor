@@ -1,0 +1,17 @@
+<!-- 设置弹层 -->
+<div class="window-menu setEdit-menu">
+    <div class="window-menu-title setEdit-menu-title">{{title}}</div>
+    <div class="window-menu-closebtn setEdit-menu-closebtn"></div>
+</div>
+<div class="setEdit-body">
+    <ul class="setEdit-list clearfix">
+        <li>
+            <input type="checkbox" class="setEdit-check" {{#if isOpenLikes}}checked="checked"{{/if}} data-check="likes">
+            <p class="setEdit-txt">是否开启点赞</p>
+        </li>
+        <li>
+            <input type="checkbox" class="setEdit-check" {{#if isOpenCmt}}checked="checked"{{/if}} data-check="cmt">
+            <p class="setEdit-txt">是否开启评论</p>
+        </li>
+    </ul>
+</div>

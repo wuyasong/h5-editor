@@ -1,0 +1,38 @@
+<!-- 选择视频弹层 -->
+<div class="window-menu video-menu">
+    <div class="window-menu-title video-menu-title">视频选择</div>
+    <div class="window-menu-closebtn video-menu-closebtn"></div>
+</div>
+<div class="video-body">
+    <div class="clearfix">
+        <div class="video-select-wrapper fl">
+            <div class="video-select-line clearfix">
+                <div class="media-window-select-box set-video-selectedType fl">
+                    <div class="media-selected video-selected">视频链接</div>
+                    <div class="media-select-icon"></div>
+                </div>
+                <ul class="media-select-list video-select-list">
+                    <li>用户MV</li>
+                    <li>曲库MV</li>
+                    <li>视频链接</li>
+                </ul>
+                <div class="media-input-wrapper fl">
+                    <input type="text" class="media-input set-video-url-input" data-type="3" placeholder="输入视频链接">
+                </div>
+                <div class="media-search set-video-search fl"></div>
+            </div>
+            <div class="video-select-line">
+                <div class="video-line">
+                    <div class="video-small-icon"></div>
+                    <div class="video-name">{{info}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="video-view fl">
+            <div class="video-view-icon"></div>
+            <video src="{{src}}" id="videoCtrls"></video>
+        </div>
+    </div>
+    <div class="video-btn video-ok-btn" data-src="{{src}}">使用视频</div>
+    <div class="video-btn video-cancel-btn">取消</div>
+</div>

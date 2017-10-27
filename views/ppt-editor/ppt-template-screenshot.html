@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="<%= title %>">
+    <meta name="description" content="<%= description %>">
+    <title><%= title %></title>
+    <style>
+    html{-webkit-text-size-adjust:none; -webkit-tap-highlight-color: transparent;overflow-x: hidden; height: 100%; font-size: 312.5%;background-color:#fff;}body{max-width:640px;color:#333;font-size:.28em;line-height:1.5;}body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0;}body{margin-left:auto;margin-right:auto;}table{border-collapse:collapse;border-spacing:0}img {vertical-align:middle;border:0}h1,h2,h3,h4,h5,h6{font-weight:normal;}ul,ol,li{list-style:none;}em,i{font-style:normal}img{border:none}input,img{vertical-align:middle}textarea:focus{outline:0}button{ outline: 0; border: none;}a{color:#6E7D8B;text-decoration:none;outline:0}a:active,a:hover,a.current{outline:0}input, button, select, textarea {line-height:1;letter-spacing: normal;word-spacing: normal;text-transform: none;text-indent:0;text-shadow: none; vertical-align:middle}button, input, optgroup, select, textarea {color:inherit;margin:0;-webkit-writing-mode: horizontal-tb;}button, html input[type=button], input[type=reset], input[type=submit] {-webkit-appearance:button;cursor:pointer}article, aside, footer, header, hgroup, main, nav, section {display: block;}@media screen and (min-width:350px){html{font-size:342%;}}@media screen and (min-width:360px){html{font-size:351.5625%;}}@media screen and (min-width:375px){html{font-size:366.2%;}}@media screen and (min-width:384px){html{font-size:375%;}}@media screen and (min-width:390px){html{font-size:380.859%;}}@media screen and (min-width:410px){html{font-size:400%;}}@media screen and (min-width:432px){ /* 魅族3 */html{font-size:421.875%;}}@media screen and (min-width:480px){html{font-size:469%;}}@media screen and (min-width:540px){html{font-size:527.34%;}}@media screen and (min-width:640px){html{font-size: 625%;}}@media screen and (min-width:768px){html{font-size: 750%;}}
+    </style>
+    <link rel="stylesheet" href="/style/ppt-animate.css">
+    <style>
+    html, body{ height: 100%; -webkit-user-select: none; user-select: none;}
+    /*.contain{ width: 100%; height: 100%; overflow: hidden; position: relative;}*/
+    .wrapper{ width: 100%; height: 100%; position: absolute; top: 0; left: 0;}
+    .screen{ /*width: 100%; height: 100%;*/ width: 100%; height: 504px; position: relative; overflow: hidden; -webkit-backface-visibility: hidden; backface-visibility: hidden;}
+    .screen_box{ width: 100%; height: 100%; position: relative; overflow: hidden; -webkit-backface-visibility: hidden; backface-visibility: hidden;}
+    .first-screen{ z-index: 30;}
+    .second-screen{ z-index: 20;}
+    .third-screen{ z-index: 10;}
+	.loading{width: 100%;height: 100%;background-color: #fff;position: absolute; left: 0; top: 0; z-index: 999;-webkit-transition: all .7s ease-in-out; transition: all .7s ease-in-out;}
+	.progress-wrap{ width: 80%; height: 20px; border-radius: 20px; background: #fff; border: 2px solid #fff; margin: 90% auto; overflow: hidden;}
+	.progress{ width: 0; height: 100%; background: #ffc051; border-radius: 10px; -webkit-transition: width .3s ease-in-out; transition: width .3s ease-in-out;}
+    .page_elem{ position: absolute; display: block;}
+    .page_inner{ width: 100%; height: 100%;}
+    .page_inner_img{ display: block; width: 100%;}
+    .page_inner_audio{ display: none; opacity: 0;}
+    .page_inner_video, .page_inner_view{ width: 100%; height: 100%;}
+    .page-num{position: absolute; bottom: .3rem; left: .1rem; z-index: 200; font-size: .3rem; color: #fff; text-align: center; width: 1rem;}
+    .musicIcon{ width: .6rem; height: .6rem; position: absolute; top: .2rem; right: .2rem; -webkit-animation: loadinggif 6s linear infinite; animation: loadinggif 6s linear infinite; z-index: 999;}
+    .songplay{ background: url('/images/play-icon-on.png') no-repeat; background-size: cover; -webkit-animation-play-state:running; animation-play-state:running;}
+    .songpause{ background: url('/images/play-icon-off.png') no-repeat; background-size: cover; -webkit-animation-play-state:paused; animation-play-state:paused;}
+    .arrow{ width: 29px; height: 27px; background: url('/images/arrow.png') no-repeat; background-size: 29px auto; position: absolute; left: 50%; bottom: 4%; margin-left: -15px; margin-top: -13px; z-index: 10; -webkit-animation: arrowSlide 1.6s infinite ease-out; animation: arrowSlide 1.6s infinite ease-out;}
+    .box{ position: fixed; bottom: .4rem; right: .4rem; z-index: 200;}
+    .likebox{ float: right;}
+    .likeBtn{ float: left; width: .4rem; height: .4rem; font-size: .3rem; background: url('/images/icon_like.png') no-repeat center; background-size: auto .33rem; margin-right: .1rem;}
+    .likeNum{ float: left; color: #fff; line-height: .4rem; font-size: .3rem;}
+    .likeBtn.animate{ -webkit-animation: zoomin 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); animation: zoomin 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);}
+    /* 评论 */
+    .comment-btn-box{ float: right; margin-left: .26rem;}
+    .comment-btn-box a{ display: block; height: .4rem; line-height: .4rem; padding-left: .5rem; background: url('/images/comment-icon.png') left bottom no-repeat; font-size: .3rem; color: #fff; background-size: .4rem;}
+
+    @-webkit-keyframes loadinggif{ 
+        0%{ -webkit-transform: rotate(0deg); transform: rotate(0deg);} 
+        100%{ -webkit-transform: rotate(359deg); transform: rotate(359deg);} 
+    }
+    @keyframes loadinggif{ 
+        0%{ -webkit-transform: rotate(0deg); transform: rotate(0deg);} 
+        100%{ -webkit-transform: rotate(359deg); transform: rotate(359deg);} 
+    }
+    @-webkit-keyframes arrowSlide{ 
+        0%{ opacity: 0; -webkit-transform: translateY(20px); transform: translateY(20px);} 
+        50%{ opacity: 1; -webkit-transform: translateY(0); transform: translateY(0);} 
+        100%{ opacity: 0; -webkit-transform: translateY(-20px); transform: translateY(-20px);} 
+    }
+    @keyframes arrowSlide{ 
+        0%{ opacity: 0; -webkit-transform: translateY(20px); transform: translateY(20px);} 
+        50%{ opacity: 1; -webkit-transform: translateY(0); transform: translateY(0);} 
+        100%{ opacity: 0; -webkit-transform: translateY(-20px); transform: translateY(-20px);} 
+    }
+    @-webkit-keyframes zoomin{
+        0%{ -webkit-transform: scale(1,1); transform: scale(1,1)};
+        30%{ -webkit-transform: scale(1.2,1.2); transform: scale(1.2,1.2)};
+        60%{ -webkit-transform: scale(1.8,1.8); transform: scale(1.8,1.8)};
+        100%{ -webkit-transform: scale(1,1); transform: scale(1,1)};
+    }
+    @keyframes zoomin{
+        0%{ -webkit-transform: scale(1,1); transform: scale(1,1)}
+        30%{ -webkit-transform: scale(1.2,1.2); transform: scale(1.2,1.2)}
+        60%{ -webkit-transform: scale(1.8,1.8); transform: scale(1.8,1.8)}
+        100%{ -webkit-transform: scale(1,1); transform: scale(1,1)}
+    }
+    </style>
+</head>
+<body>
+    <!-- 满屏容器 -->
+	<section class="contain" id="contain">
+
+        <!-- 滑动容器 -->
+		<div class="wrapper" id="wrapper">
+            <% data.pages.forEach(function(page, index){ %>
+            <div class="screen" style="
+                    background-color:<%= page.background.backgroundColor %>;
+                    <% if (page.background.backgroundImage) { %>background-image:url(<%= page.background.backgroundImage %>);<% } %>
+                    background-position:<%= page.background.backgroundPosition %>;
+                    background-size:<%= page.background.backgroundSize %>;">
+                <div class="screen_box">
+                    <% for (var element in page.component) { %>
+                        <div class="page_elem" id="<%= page.component[element].id %>" data-type="<%= page.component[element].type %>" style="width:<%= page.component[element].style.width %>px;height:<%= page.component[element].style.height %>px;left:<%= page.component[element].style.left %>px;top:<%= page.component[element].style.top %>px;z-index:<%= page.component[element].style.zIndex %>;">
+                            <% if (page.component[element].type === 'text') { %>
+                                <div class="page_inner" style="
+                                    font-family:<%= page.component[element].style.fontFamily %>;
+                                    font-size:<%= page.component[element].style.fontSize %>px;
+                                    line-height:<%= page.component[element].style.lineHeight %>;
+                                    color:<%= page.component[element].style.color %>;">
+                                    <%- page.component[element].text %>
+                                </div>
+                            <% } else if (page.component[element].type === 'view') { %>
+                                <div class="page_inner_view" style="
+                                border:<%= page.component[element].style.borderWidth %>px solid <%= page.component[element].style.borderColor %>;
+                                border-radius:<%= page.component[element].style.borderRadius %>px;
+                                opacity:<%= page.component[element].style.opacity %>;
+                                background:<% if (page.component[element].style.backgroundImage) { %>url(<%= page.component[element].style.backgroundImage %>) <%= page.component[element].style.backgroundPosition %> no-repeat<% } %> <%= page.component[element].style.backgroundColor %>;
+                                background-size:<%= page.component[element].style.backgroundSize %>;">
+                                </div>
+                            <% } else if (page.component[element].type === 'button') { %>
+                                <div class="page_inner" style="
+                                    text-align:center;
+                                    border-radius:<%= page.component[element].style.borderRadius %>px;
+                                    opacity:<%= page.component[element].style.opacity %>;
+                                    background:<%= page.component[element].style.backgroundColor %>;
+                                    border:<%= page.component[element].style.borderWidth %>px solid <%= page.component[element].style.borderColor %>;
+                                    font-family:<%= page.component[element].style.fontFamily %>;
+                                    font-size:<%= page.component[element].style.fontSize %>px;
+                                    color:<%= page.component[element].style.color %>;">
+                                    <%= page.component[element].text %>
+                                </div>
+                            <% } else if (page.component[element].type === 'image') { %>
+                                <div class="page_inner" style="
+                                    border:<%= page.component[element].style.borderWidth %>px solid <%= page.component[element].style.borderColor %>;
+                                    border-radius:<%= page.component[element].style.borderRadius %>px;
+                                    opacity:<%= page.component[element].style.opacity %>;
+                                    overflow:hidden;">
+                                    <img src="<%= page.component[element].src %>" class="page_inner_img" draggable="false">
+                                </div>
+                            <% } else if (page.component[element].type === 'audio') { %>
+                                <div class="page_inner" data-playImg="<%= page.component[element].image.play %>" data-pauseImg="<%= page.component[element].image.pause %>" style="
+                                    background:<% if (page.component[element].image.play) { %>url(<%= page.component[element].image.play %>) no-repeat<% } %> center center;
+                                    background-size:cover;">
+                                </div>
+                            <% } else if (page.component[element].type === 'video') { %>
+                                <div class="page_inner" style="
+                                    background:<% if (page.component[element].poster) { %>url(<%= page.component[element].poster %>) no-repeat<% } %> #ddd;
+                                    background-size:cover;">
+                                </div>
+                            <% } %>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+            <% }) %>
+		</div>
+
+	</section>
+	<!--<script src="/app/zepto.min.js"></script>
+	<script src="/app/mscroller.js"></script>-->
+</body>
+</html>
